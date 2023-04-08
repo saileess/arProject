@@ -34,7 +34,6 @@ class IAuthRepository extends AuthRepository{
     required String email, 
     required String password}) async 
     {
-      String? emailRes;
       UserDto? userDto;
     try {
       final res = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -42,7 +41,6 @@ class IAuthRepository extends AuthRepository{
         password: password);
 
       final uid = res.user!.uid;
-      emailRes = res.user!.email;
 
       DocumentSnapshot<Map<String, dynamic>> response = await _firestore.collection('users').doc(uid).get();
       if(response.data() != null){
@@ -112,13 +110,11 @@ class IAuthRepository extends AuthRepository{
     required String college,
     }) async{
     String? userUid;
-    bool isSuccess = false;
     
     try{ 
 final output = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, 
       password: password);
-      isSuccess = true;
         userUid = output.user!.uid;
         debugPrint(userUid);
         
@@ -189,7 +185,8 @@ return right(userDto);
   
 
 
-Future<Either<String, UserDto>> signInWithGoogle() async {
+@override
+  Future<Either<String, UserDto>> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     UserDto? userDto;
@@ -213,7 +210,6 @@ Future<Either<String, UserDto>> signInWithGoogle() async {
             await auth.signInWithCredential(credential);
 
         user = userCredential.user;
-        print(user);
         userDto= UserDto(id: user!.uid, username: user.displayName!, email: user.email!, college: '', createdAt: DateTime.now(), updatedAt: DateTime.now(), profileUrl: user.photoURL);
         return right(userDto);
       } on FirebaseAuthException catch (e) {

@@ -21,6 +21,11 @@ class CoreRoutes {
   static const String planetRoute = 'planets';
   static const String bookmarkRoute = 'bookmark';
   static const String wallRoute = 'wall';
+  static const String wallDetailRoute = 'wallDetail';
+
+
+  static const String arRoute = 'arObject';
+
 
 
 

@@ -10,8 +10,11 @@ class PlanetDetailsState with _$PlanetDetailsState {
     required String planetID,
     required bool isBookmark,
     required bool isUpdatingBookmark,
+    required List<String> userBoomarkList,
     required PlanetRepository planetRepository,
     required AppStateNotifier appStateNotifier,
+    required AuthRepository authRepository,
+    required bool isUserUpdated,
     PlanetDto? planetDto,
     UserDto? userDto,
 
@@ -27,9 +30,12 @@ class PlanetDetailsState with _$PlanetDetailsState {
         planetID: planetID,
         errorMessage: '',
         isBookmark: false,
+        isUserUpdated: false,
         isUpdatingBookmark: false,
+        userBoomarkList: [],
         userDto: appStateNotifier.userDto,
         planetRepository: IPlanetRepository(),
         appStateNotifier: appStateNotifier,
+        authRepository: IAuthRepository()
       );
 }

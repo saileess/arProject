@@ -4,15 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:major_project/domain/extensions/string_extensions.dart';
 import 'package:major_project/domain/services/navigation_services/routers/route_name.dart';
+import 'package:major_project/presentation/ar/ar_screen.dart';
 import 'package:major_project/presentation/bookmark/bookmark_screen.dart';
 import 'package:major_project/presentation/home/bottomnavbar.dart';
 import 'package:major_project/presentation/planets/planets_detail_screen.dart';
 import 'package:major_project/presentation/planets/planets_screen.dart';
 import 'package:major_project/presentation/science/science_details_screen.dart';
 import 'package:major_project/presentation/science/topic_detail_screen.dart';
-
-
-import '../../../../infrastructure/dtos/planet_dto/planet_dto.dart';
+import 'package:major_project/presentation/wall/wall_detail_screen.dart';
 import '../../../../presentation/auth/login/login_screen.dart';
 import '../../../../presentation/auth/register/signup_screen.dart';
 import '../../../../presentation/geography/geo_detail_screen.dart';
@@ -35,17 +34,25 @@ Route<dynamic> authorizedNavigation(RouteSettings settings) {
       return _getPageRoute(const BookmarkScreen(), settings);
     case CoreRoutes.wallRoute:
       return _getPageRoute(const WallScreen(), settings);
-    case CoreRoutes.planetRoute:
+      case CoreRoutes.planetRoute:
       return _getPageRoute(const PlanetScreen(), settings);
-    case CoreRoutes.planetDetails:
-    print(routingData.queryParameters);
+
+    case CoreRoutes.arRoute:
     final routeData = routingData.queryParameters;
-    
+      return _getPageRoute(ArObjectScreen(name: routeData['name']?? '',), settings);
+  
+
+    case CoreRoutes.planetDetails:
+    final routeData = routingData.queryParameters;
     
   return _getPageRoute( PlanetsDetailScreen(planetID : routeData['planetID']?? ''), settings);
 
-    // case CoreRoutes.localRoute:
-    //   return _getPageRoute(const LocalObject(), settings);
+  case CoreRoutes.wallDetailRoute:
+  final routeData = routingData.queryParameters;
+
+  return _getPageRoute(WallDetailScreen(wallID: routeData['wallID'] ?? ''), settings);
+
+
     // case CoreRoutes.webRoute:
     //   return _getPageRoute(const WebObjectsView(), settings);
 

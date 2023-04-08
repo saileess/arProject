@@ -79,7 +79,7 @@ class PlanetScreenConsumer extends StatelessWidget {
                               height: 1.h,
                             ),
                             Text(
-                              'Planets',
+                              'Geography',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -121,7 +121,7 @@ class PlanetScreenConsumer extends StatelessWidget {
                                           ),
                                     ),
                                   )
-                                : Container(
+                                : SizedBox(
                                     height: 55.h,
                                     child: ListView.separated(
                                       scrollDirection: Axis.horizontal,
@@ -178,8 +178,8 @@ class PlanetScreenConsumer extends StatelessWidget {
   }
 }
 
-/////////////////////////
 
+// ignore: must_be_immutable
 class WhiteSquare extends StatelessWidget {
   final String name;
   final String smallPara;
@@ -212,7 +212,7 @@ class WhiteSquare extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                   // color: Colors.red,
                   height: 30.h,
                   child: const Image(

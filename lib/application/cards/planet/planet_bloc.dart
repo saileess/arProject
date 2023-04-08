@@ -24,7 +24,7 @@ class PlanetBloc extends Bloc<PlanetEvent, PlanetState> {
     on<_FetchPlanets>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       final res = await state.planetRepository.getPlanetData();
-      print(res);
+      
 
       res.fold((l) {
         emit(state.copyWith(

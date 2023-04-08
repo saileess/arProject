@@ -17,5 +17,9 @@ abstract class PlanetRepository {
     { required String id,
     }
       );
+Future<List<PlanetDto>> fetchListofBookmarks(
+    { required String uid,
+    }
+      );
 
 }

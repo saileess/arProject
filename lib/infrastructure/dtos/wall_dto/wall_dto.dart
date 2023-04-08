@@ -13,6 +13,9 @@ class WallDto with _$WallDto {
     required String name,
     required String description,
     required String svgImage,
+    required String imageUrl,
+    required String detail,
+    required String docID
   }) = _WallDto;
 
   factory WallDto.fromJson(Map<String, dynamic> json) => _$WallDtoFromJson(

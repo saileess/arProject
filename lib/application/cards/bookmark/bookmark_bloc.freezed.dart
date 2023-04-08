@@ -451,8 +451,11 @@ mixin _$BookmarkState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   bool get isFailed => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
   AppStateNotifier get appStateNotifier => throw _privateConstructorUsedError;
   ScrollController get scrollController => throw _privateConstructorUsedError;
+  PlanetRepository get planetRepository => throw _privateConstructorUsedError;
+  List<PlanetDto> get userBookmarkList => throw _privateConstructorUsedError;
   UserDto? get userDto => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -469,8 +472,11 @@ abstract class $BookmarkStateCopyWith<$Res> {
       {bool isLoading,
       bool isSuccess,
       bool isFailed,
+      String errorMessage,
       AppStateNotifier appStateNotifier,
       ScrollController scrollController,
+      PlanetRepository planetRepository,
+      List<PlanetDto> userBookmarkList,
       UserDto? userDto});
 
   $UserDtoCopyWith<$Res>? get userDto;
@@ -490,8 +496,11 @@ class _$BookmarkStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? isFailed = freezed,
+    Object? errorMessage = freezed,
     Object? appStateNotifier = freezed,
     Object? scrollController = freezed,
+    Object? planetRepository = freezed,
+    Object? userBookmarkList = freezed,
     Object? userDto = freezed,
   }) {
     return _then(_value.copyWith(
@@ -507,6 +516,10 @@ class _$BookmarkStateCopyWithImpl<$Res>
           ? _value.isFailed
           : isFailed // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       appStateNotifier: appStateNotifier == freezed
           ? _value.appStateNotifier
           : appStateNotifier // ignore: cast_nullable_to_non_nullable
@@ -515,6 +528,14 @@ class _$BookmarkStateCopyWithImpl<$Res>
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController,
+      planetRepository: planetRepository == freezed
+          ? _value.planetRepository
+          : planetRepository // ignore: cast_nullable_to_non_nullable
+              as PlanetRepository,
+      userBookmarkList: userBookmarkList == freezed
+          ? _value.userBookmarkList
+          : userBookmarkList // ignore: cast_nullable_to_non_nullable
+              as List<PlanetDto>,
       userDto: userDto == freezed
           ? _value.userDto
           : userDto // ignore: cast_nullable_to_non_nullable
@@ -545,8 +566,11 @@ abstract class _$$_BookmarkStateCopyWith<$Res>
       {bool isLoading,
       bool isSuccess,
       bool isFailed,
+      String errorMessage,
       AppStateNotifier appStateNotifier,
       ScrollController scrollController,
+      PlanetRepository planetRepository,
+      List<PlanetDto> userBookmarkList,
       UserDto? userDto});
 
   @override
@@ -569,8 +593,11 @@ class __$$_BookmarkStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? isFailed = freezed,
+    Object? errorMessage = freezed,
     Object? appStateNotifier = freezed,
     Object? scrollController = freezed,
+    Object? planetRepository = freezed,
+    Object? userBookmarkList = freezed,
     Object? userDto = freezed,
   }) {
     return _then(_$_BookmarkState(
@@ -586,6 +613,10 @@ class __$$_BookmarkStateCopyWithImpl<$Res>
           ? _value.isFailed
           : isFailed // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       appStateNotifier: appStateNotifier == freezed
           ? _value.appStateNotifier
           : appStateNotifier // ignore: cast_nullable_to_non_nullable
@@ -594,6 +625,14 @@ class __$$_BookmarkStateCopyWithImpl<$Res>
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController,
+      planetRepository: planetRepository == freezed
+          ? _value.planetRepository
+          : planetRepository // ignore: cast_nullable_to_non_nullable
+              as PlanetRepository,
+      userBookmarkList: userBookmarkList == freezed
+          ? _value._userBookmarkList
+          : userBookmarkList // ignore: cast_nullable_to_non_nullable
+              as List<PlanetDto>,
       userDto: userDto == freezed
           ? _value.userDto
           : userDto // ignore: cast_nullable_to_non_nullable
@@ -609,9 +648,13 @@ class _$_BookmarkState implements _BookmarkState {
       {required this.isLoading,
       required this.isSuccess,
       required this.isFailed,
+      required this.errorMessage,
       required this.appStateNotifier,
       required this.scrollController,
-      this.userDto});
+      required this.planetRepository,
+      required final List<PlanetDto> userBookmarkList,
+      this.userDto})
+      : _userBookmarkList = userBookmarkList;
 
   @override
   final bool isLoading;
@@ -620,15 +663,26 @@ class _$_BookmarkState implements _BookmarkState {
   @override
   final bool isFailed;
   @override
+  final String errorMessage;
+  @override
   final AppStateNotifier appStateNotifier;
   @override
   final ScrollController scrollController;
+  @override
+  final PlanetRepository planetRepository;
+  final List<PlanetDto> _userBookmarkList;
+  @override
+  List<PlanetDto> get userBookmarkList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userBookmarkList);
+  }
+
   @override
   final UserDto? userDto;
 
   @override
   String toString() {
-    return 'BookmarkState(isLoading: $isLoading, isSuccess: $isSuccess, isFailed: $isFailed, appStateNotifier: $appStateNotifier, scrollController: $scrollController, userDto: $userDto)';
+    return 'BookmarkState(isLoading: $isLoading, isSuccess: $isSuccess, isFailed: $isFailed, errorMessage: $errorMessage, appStateNotifier: $appStateNotifier, scrollController: $scrollController, planetRepository: $planetRepository, userBookmarkList: $userBookmarkList, userDto: $userDto)';
   }
 
   @override
@@ -640,9 +694,15 @@ class _$_BookmarkState implements _BookmarkState {
             const DeepCollectionEquality().equals(other.isSuccess, isSuccess) &&
             const DeepCollectionEquality().equals(other.isFailed, isFailed) &&
             const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage) &&
+            const DeepCollectionEquality()
                 .equals(other.appStateNotifier, appStateNotifier) &&
             const DeepCollectionEquality()
                 .equals(other.scrollController, scrollController) &&
+            const DeepCollectionEquality()
+                .equals(other.planetRepository, planetRepository) &&
+            const DeepCollectionEquality()
+                .equals(other._userBookmarkList, _userBookmarkList) &&
             const DeepCollectionEquality().equals(other.userDto, userDto));
   }
 
@@ -652,8 +712,11 @@ class _$_BookmarkState implements _BookmarkState {
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(isSuccess),
       const DeepCollectionEquality().hash(isFailed),
+      const DeepCollectionEquality().hash(errorMessage),
       const DeepCollectionEquality().hash(appStateNotifier),
       const DeepCollectionEquality().hash(scrollController),
+      const DeepCollectionEquality().hash(planetRepository),
+      const DeepCollectionEquality().hash(_userBookmarkList),
       const DeepCollectionEquality().hash(userDto));
 
   @JsonKey(ignore: true)
@@ -667,8 +730,11 @@ abstract class _BookmarkState implements BookmarkState {
       {required final bool isLoading,
       required final bool isSuccess,
       required final bool isFailed,
+      required final String errorMessage,
       required final AppStateNotifier appStateNotifier,
       required final ScrollController scrollController,
+      required final PlanetRepository planetRepository,
+      required final List<PlanetDto> userBookmarkList,
       final UserDto? userDto}) = _$_BookmarkState;
 
   @override
@@ -678,9 +744,15 @@ abstract class _BookmarkState implements BookmarkState {
   @override
   bool get isFailed;
   @override
+  String get errorMessage;
+  @override
   AppStateNotifier get appStateNotifier;
   @override
   ScrollController get scrollController;
+  @override
+  PlanetRepository get planetRepository;
+  @override
+  List<PlanetDto> get userBookmarkList;
   @override
   UserDto? get userDto;
   @override

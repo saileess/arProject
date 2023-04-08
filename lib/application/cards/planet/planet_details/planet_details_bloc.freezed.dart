@@ -458,8 +458,11 @@ mixin _$PlanetDetailsState {
   String get planetID => throw _privateConstructorUsedError;
   bool get isBookmark => throw _privateConstructorUsedError;
   bool get isUpdatingBookmark => throw _privateConstructorUsedError;
+  List<String> get userBoomarkList => throw _privateConstructorUsedError;
   PlanetRepository get planetRepository => throw _privateConstructorUsedError;
   AppStateNotifier get appStateNotifier => throw _privateConstructorUsedError;
+  AuthRepository get authRepository => throw _privateConstructorUsedError;
+  bool get isUserUpdated => throw _privateConstructorUsedError;
   PlanetDto? get planetDto => throw _privateConstructorUsedError;
   UserDto? get userDto => throw _privateConstructorUsedError;
 
@@ -481,8 +484,11 @@ abstract class $PlanetDetailsStateCopyWith<$Res> {
       String planetID,
       bool isBookmark,
       bool isUpdatingBookmark,
+      List<String> userBoomarkList,
       PlanetRepository planetRepository,
       AppStateNotifier appStateNotifier,
+      AuthRepository authRepository,
+      bool isUserUpdated,
       PlanetDto? planetDto,
       UserDto? userDto});
 
@@ -508,8 +514,11 @@ class _$PlanetDetailsStateCopyWithImpl<$Res>
     Object? planetID = freezed,
     Object? isBookmark = freezed,
     Object? isUpdatingBookmark = freezed,
+    Object? userBoomarkList = freezed,
     Object? planetRepository = freezed,
     Object? appStateNotifier = freezed,
+    Object? authRepository = freezed,
+    Object? isUserUpdated = freezed,
     Object? planetDto = freezed,
     Object? userDto = freezed,
   }) {
@@ -542,6 +551,10 @@ class _$PlanetDetailsStateCopyWithImpl<$Res>
           ? _value.isUpdatingBookmark
           : isUpdatingBookmark // ignore: cast_nullable_to_non_nullable
               as bool,
+      userBoomarkList: userBoomarkList == freezed
+          ? _value.userBoomarkList
+          : userBoomarkList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       planetRepository: planetRepository == freezed
           ? _value.planetRepository
           : planetRepository // ignore: cast_nullable_to_non_nullable
@@ -550,6 +563,14 @@ class _$PlanetDetailsStateCopyWithImpl<$Res>
           ? _value.appStateNotifier
           : appStateNotifier // ignore: cast_nullable_to_non_nullable
               as AppStateNotifier,
+      authRepository: authRepository == freezed
+          ? _value.authRepository
+          : authRepository // ignore: cast_nullable_to_non_nullable
+              as AuthRepository,
+      isUserUpdated: isUserUpdated == freezed
+          ? _value.isUserUpdated
+          : isUserUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
       planetDto: planetDto == freezed
           ? _value.planetDto
           : planetDto // ignore: cast_nullable_to_non_nullable
@@ -599,8 +620,11 @@ abstract class _$$_PlanetDetailsStateCopyWith<$Res>
       String planetID,
       bool isBookmark,
       bool isUpdatingBookmark,
+      List<String> userBoomarkList,
       PlanetRepository planetRepository,
       AppStateNotifier appStateNotifier,
+      AuthRepository authRepository,
+      bool isUserUpdated,
       PlanetDto? planetDto,
       UserDto? userDto});
 
@@ -630,8 +654,11 @@ class __$$_PlanetDetailsStateCopyWithImpl<$Res>
     Object? planetID = freezed,
     Object? isBookmark = freezed,
     Object? isUpdatingBookmark = freezed,
+    Object? userBoomarkList = freezed,
     Object? planetRepository = freezed,
     Object? appStateNotifier = freezed,
+    Object? authRepository = freezed,
+    Object? isUserUpdated = freezed,
     Object? planetDto = freezed,
     Object? userDto = freezed,
   }) {
@@ -664,6 +691,10 @@ class __$$_PlanetDetailsStateCopyWithImpl<$Res>
           ? _value.isUpdatingBookmark
           : isUpdatingBookmark // ignore: cast_nullable_to_non_nullable
               as bool,
+      userBoomarkList: userBoomarkList == freezed
+          ? _value._userBoomarkList
+          : userBoomarkList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       planetRepository: planetRepository == freezed
           ? _value.planetRepository
           : planetRepository // ignore: cast_nullable_to_non_nullable
@@ -672,6 +703,14 @@ class __$$_PlanetDetailsStateCopyWithImpl<$Res>
           ? _value.appStateNotifier
           : appStateNotifier // ignore: cast_nullable_to_non_nullable
               as AppStateNotifier,
+      authRepository: authRepository == freezed
+          ? _value.authRepository
+          : authRepository // ignore: cast_nullable_to_non_nullable
+              as AuthRepository,
+      isUserUpdated: isUserUpdated == freezed
+          ? _value.isUserUpdated
+          : isUserUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
       planetDto: planetDto == freezed
           ? _value.planetDto
           : planetDto // ignore: cast_nullable_to_non_nullable
@@ -695,10 +734,14 @@ class _$_PlanetDetailsState implements _PlanetDetailsState {
       required this.planetID,
       required this.isBookmark,
       required this.isUpdatingBookmark,
+      required final List<String> userBoomarkList,
       required this.planetRepository,
       required this.appStateNotifier,
+      required this.authRepository,
+      required this.isUserUpdated,
       this.planetDto,
-      this.userDto});
+      this.userDto})
+      : _userBoomarkList = userBoomarkList;
 
   @override
   final bool isLoading;
@@ -714,10 +757,21 @@ class _$_PlanetDetailsState implements _PlanetDetailsState {
   final bool isBookmark;
   @override
   final bool isUpdatingBookmark;
+  final List<String> _userBoomarkList;
+  @override
+  List<String> get userBoomarkList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userBoomarkList);
+  }
+
   @override
   final PlanetRepository planetRepository;
   @override
   final AppStateNotifier appStateNotifier;
+  @override
+  final AuthRepository authRepository;
+  @override
+  final bool isUserUpdated;
   @override
   final PlanetDto? planetDto;
   @override
@@ -725,7 +779,7 @@ class _$_PlanetDetailsState implements _PlanetDetailsState {
 
   @override
   String toString() {
-    return 'PlanetDetailsState(isLoading: $isLoading, isSuccess: $isSuccess, isFailed: $isFailed, errorMessage: $errorMessage, planetID: $planetID, isBookmark: $isBookmark, isUpdatingBookmark: $isUpdatingBookmark, planetRepository: $planetRepository, appStateNotifier: $appStateNotifier, planetDto: $planetDto, userDto: $userDto)';
+    return 'PlanetDetailsState(isLoading: $isLoading, isSuccess: $isSuccess, isFailed: $isFailed, errorMessage: $errorMessage, planetID: $planetID, isBookmark: $isBookmark, isUpdatingBookmark: $isUpdatingBookmark, userBoomarkList: $userBoomarkList, planetRepository: $planetRepository, appStateNotifier: $appStateNotifier, authRepository: $authRepository, isUserUpdated: $isUserUpdated, planetDto: $planetDto, userDto: $userDto)';
   }
 
   @override
@@ -744,9 +798,15 @@ class _$_PlanetDetailsState implements _PlanetDetailsState {
             const DeepCollectionEquality()
                 .equals(other.isUpdatingBookmark, isUpdatingBookmark) &&
             const DeepCollectionEquality()
+                .equals(other._userBoomarkList, _userBoomarkList) &&
+            const DeepCollectionEquality()
                 .equals(other.planetRepository, planetRepository) &&
             const DeepCollectionEquality()
                 .equals(other.appStateNotifier, appStateNotifier) &&
+            const DeepCollectionEquality()
+                .equals(other.authRepository, authRepository) &&
+            const DeepCollectionEquality()
+                .equals(other.isUserUpdated, isUserUpdated) &&
             const DeepCollectionEquality().equals(other.planetDto, planetDto) &&
             const DeepCollectionEquality().equals(other.userDto, userDto));
   }
@@ -761,8 +821,11 @@ class _$_PlanetDetailsState implements _PlanetDetailsState {
       const DeepCollectionEquality().hash(planetID),
       const DeepCollectionEquality().hash(isBookmark),
       const DeepCollectionEquality().hash(isUpdatingBookmark),
+      const DeepCollectionEquality().hash(_userBoomarkList),
       const DeepCollectionEquality().hash(planetRepository),
       const DeepCollectionEquality().hash(appStateNotifier),
+      const DeepCollectionEquality().hash(authRepository),
+      const DeepCollectionEquality().hash(isUserUpdated),
       const DeepCollectionEquality().hash(planetDto),
       const DeepCollectionEquality().hash(userDto));
 
@@ -782,8 +845,11 @@ abstract class _PlanetDetailsState implements PlanetDetailsState {
       required final String planetID,
       required final bool isBookmark,
       required final bool isUpdatingBookmark,
+      required final List<String> userBoomarkList,
       required final PlanetRepository planetRepository,
       required final AppStateNotifier appStateNotifier,
+      required final AuthRepository authRepository,
+      required final bool isUserUpdated,
       final PlanetDto? planetDto,
       final UserDto? userDto}) = _$_PlanetDetailsState;
 
@@ -802,9 +868,15 @@ abstract class _PlanetDetailsState implements PlanetDetailsState {
   @override
   bool get isUpdatingBookmark;
   @override
+  List<String> get userBoomarkList;
+  @override
   PlanetRepository get planetRepository;
   @override
   AppStateNotifier get appStateNotifier;
+  @override
+  AuthRepository get authRepository;
+  @override
+  bool get isUserUpdated;
   @override
   PlanetDto? get planetDto;
   @override

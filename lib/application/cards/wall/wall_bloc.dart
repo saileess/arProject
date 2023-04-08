@@ -23,7 +23,7 @@ class WallBloc extends Bloc<WallEvent, WallState> {
     on<_OnLoad>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       final res = await state.wallRepository.getWallData();
-      print(res);
+
 
       res.fold((l) {
         emit(state.copyWith(

@@ -15,7 +15,7 @@ class IWallRepository extends WallRepository{
 
     try{
       final QuerySnapshot<Map<String, dynamic>> res = await _firestore.collection('wall').get();
-      print(res);
+
 
       if(res.docs.isNotEmpty){
         for(final wall in res.docs){
@@ -36,7 +36,7 @@ class IWallRepository extends WallRepository{
       final DocumentSnapshot res = await _firestore.collection('wall').doc(id).get();
       if(res.exists){
         wallDto = WallDto.fromJson(res.data() as Map<String, dynamic>);
-        print(wallDto);
+
       }
     }catch(e){
       return left('Failed to fetch upcoming topics detail. Please try again!');

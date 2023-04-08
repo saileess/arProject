@@ -52,7 +52,6 @@ on<_SignInWithGoogle>((event, emit) async{
             await state.authRepository.signInWithGoogle();
 
         response.fold((l) {
-          print('failed');
           emit(state.copyWith(
             isFailed: true,
             isLoading: false,
@@ -60,7 +59,6 @@ on<_SignInWithGoogle>((event, emit) async{
             errorMessage: l,
           ));
         }, (r) {
-          print('success');
           add(LoginEvent.emitFromAnywhere(
               state: state.copyWith(
             isFailed: false,
@@ -99,7 +97,6 @@ on<_SignInWithGoogle>((event, emit) async{
           errorMessage: l,
         ));
       }, (r) async {
-        print(r);
         add(LoginEvent.emitFromAnywhere(
             state: state.copyWith(
           isFailed: false,

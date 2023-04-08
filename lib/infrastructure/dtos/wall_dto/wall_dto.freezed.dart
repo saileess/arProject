@@ -23,6 +23,9 @@ mixin _$WallDto {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get svgImage => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get detail => throw _privateConstructorUsedError;
+  String get docID => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +36,13 @@ mixin _$WallDto {
 abstract class $WallDtoCopyWith<$Res> {
   factory $WallDtoCopyWith(WallDto value, $Res Function(WallDto) then) =
       _$WallDtoCopyWithImpl<$Res>;
-  $Res call({String name, String description, String svgImage});
+  $Res call(
+      {String name,
+      String description,
+      String svgImage,
+      String imageUrl,
+      String detail,
+      String docID});
 }
 
 /// @nodoc
@@ -49,6 +58,9 @@ class _$WallDtoCopyWithImpl<$Res> implements $WallDtoCopyWith<$Res> {
     Object? name = freezed,
     Object? description = freezed,
     Object? svgImage = freezed,
+    Object? imageUrl = freezed,
+    Object? detail = freezed,
+    Object? docID = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -63,6 +75,18 @@ class _$WallDtoCopyWithImpl<$Res> implements $WallDtoCopyWith<$Res> {
           ? _value.svgImage
           : svgImage // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      detail: detail == freezed
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String,
+      docID: docID == freezed
+          ? _value.docID
+          : docID // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -73,7 +97,13 @@ abstract class _$$_WallDtoCopyWith<$Res> implements $WallDtoCopyWith<$Res> {
           _$_WallDto value, $Res Function(_$_WallDto) then) =
       __$$_WallDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String description, String svgImage});
+  $Res call(
+      {String name,
+      String description,
+      String svgImage,
+      String imageUrl,
+      String detail,
+      String docID});
 }
 
 /// @nodoc
@@ -90,6 +120,9 @@ class __$$_WallDtoCopyWithImpl<$Res> extends _$WallDtoCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? svgImage = freezed,
+    Object? imageUrl = freezed,
+    Object? detail = freezed,
+    Object? docID = freezed,
   }) {
     return _then(_$_WallDto(
       name: name == freezed
@@ -104,6 +137,18 @@ class __$$_WallDtoCopyWithImpl<$Res> extends _$WallDtoCopyWithImpl<$Res>
           ? _value.svgImage
           : svgImage // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      detail: detail == freezed
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String,
+      docID: docID == freezed
+          ? _value.docID
+          : docID // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -112,7 +157,12 @@ class __$$_WallDtoCopyWithImpl<$Res> extends _$WallDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WallDto implements _WallDto {
   _$_WallDto(
-      {required this.name, required this.description, required this.svgImage});
+      {required this.name,
+      required this.description,
+      required this.svgImage,
+      required this.imageUrl,
+      required this.detail,
+      required this.docID});
 
   factory _$_WallDto.fromJson(Map<String, dynamic> json) =>
       _$$_WallDtoFromJson(json);
@@ -123,10 +173,16 @@ class _$_WallDto implements _WallDto {
   final String description;
   @override
   final String svgImage;
+  @override
+  final String imageUrl;
+  @override
+  final String detail;
+  @override
+  final String docID;
 
   @override
   String toString() {
-    return 'WallDto(name: $name, description: $description, svgImage: $svgImage)';
+    return 'WallDto(name: $name, description: $description, svgImage: $svgImage, imageUrl: $imageUrl, detail: $detail, docID: $docID)';
   }
 
   @override
@@ -137,7 +193,10 @@ class _$_WallDto implements _WallDto {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.svgImage, svgImage));
+            const DeepCollectionEquality().equals(other.svgImage, svgImage) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.detail, detail) &&
+            const DeepCollectionEquality().equals(other.docID, docID));
   }
 
   @JsonKey(ignore: true)
@@ -146,7 +205,10 @@ class _$_WallDto implements _WallDto {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(svgImage));
+      const DeepCollectionEquality().hash(svgImage),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(detail),
+      const DeepCollectionEquality().hash(docID));
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +227,10 @@ abstract class _WallDto implements WallDto {
   factory _WallDto(
       {required final String name,
       required final String description,
-      required final String svgImage}) = _$_WallDto;
+      required final String svgImage,
+      required final String imageUrl,
+      required final String detail,
+      required final String docID}) = _$_WallDto;
 
   factory _WallDto.fromJson(Map<String, dynamic> json) = _$_WallDto.fromJson;
 
@@ -175,6 +240,12 @@ abstract class _WallDto implements WallDto {
   String get description;
   @override
   String get svgImage;
+  @override
+  String get imageUrl;
+  @override
+  String get detail;
+  @override
+  String get docID;
   @override
   @JsonKey(ignore: true)
   _$$_WallDtoCopyWith<_$_WallDto> get copyWith =>

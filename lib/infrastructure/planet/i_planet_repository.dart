@@ -17,14 +17,13 @@ class IPlanetRepository extends PlanetRepository{
 
     try{
   final QuerySnapshot<Map<String, dynamic>> res =  await _firestore.collection('planets').get();
-  print(res);
+
 
       if (res.docs.isNotEmpty) {
         for (final planet in res.docs) {
           listOfPlanets.add(PlanetDto.fromJson(planet.data()));
           
         }
-        print(listOfPlanets);
       }
 
     }catch (e) {
@@ -44,7 +43,7 @@ class IPlanetRepository extends PlanetRepository{
 
       if (res.exists) {
         planetDto = PlanetDto.fromJson(res.data() as Map<String, dynamic>);
-        print(planetDto);
+
       }
 
     }catch (e) {
@@ -82,5 +81,38 @@ await  _firestore.collection('users').doc(uid).update({'bookmarks': updatedBookm
     }
     return updatedBookmarkList;
   }
+  
+
+
+  @override
+  Future<List<PlanetDto>> fetchListofBookmarks({required String uid}) async{
+    List<PlanetDto> bookmarkList = [];
+    try{
+final  res =  await _firestore.collection('users').doc(uid).get();
+  final listOfBookmarks = res.data()!['bookmarks'];
+  List<String> updatedBookmarks = [];
+  if(listOfBookmarks != null ){
+    for (var bookmark in listOfBookmarks) {
+      updatedBookmarks.add(bookmark);
+    }
+  }
+  if(updatedBookmarks.isNotEmpty){
+    for(var bookmarkID in updatedBookmarks){
+      final res2 = await getPlanetDetailsByID(id: bookmarkID);
+      res2.fold((l)  {
+
+      }, (r) {
+        bookmarkList.add(r);
+      });
+    }
+  }
+
+    }catch (e) {
+      return bookmarkList;
+    }
+    return bookmarkList;
+  }
+
+
 }
 

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:major_project/application/cards/planet/planet_bloc.dart';
 import 'package:major_project/presentation/core/widgets/primary_button.dart';
-import 'package:major_project/presentation/home/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import 'package:major_project/domain/constants/string_constants.dart';
 
 import '../../domain/configs/app_config.dart';
 import '../../domain/configs/injection.dart';
@@ -24,18 +20,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class ObjCat {
-  late String title;
-  late String image;
-  late Function() onTapped;
-  late Color cardColor;
-  ObjCat({
-    required this.title,
-    required this.image,
-    required this.onTapped,
-    required this.cardColor,
-  });
-}
+
 
 class HomeScreenConsumer extends StatelessWidget {
   const HomeScreenConsumer({Key? key}) : super(key: key);
@@ -45,45 +30,6 @@ class HomeScreenConsumer extends StatelessWidget {
     final appStateNotifier =
         Provider.of<AppStateNotifier>(context, listen: false);
 
-    List<ObjCat> categoryObj = [
-      ObjCat(
-        title: CategoryConstants.planet,
-        image: AssetConstants.planetLogo,
-        cardColor: Theme.of(context).colorScheme.primary,
-        onTapped: () {
-          // context.read<PlanetBloc>()
-          //                 .add(const PlanetEvent.fetchPlanets());
-          navigator<NavigationService>().navigateTo(CoreRoutes.planetRoute);
-        },
-      ),
-      ObjCat(
-        title: CategoryConstants.space,
-        image: AssetConstants.planetLogo,
-        cardColor: Theme.of(context).colorScheme.primary,
-        onTapped: () {
-          navigator<NavigationService>()
-              .navigateTo(CoreRoutes.scienceDetailsRoute);
-        },
-      ),
-      ObjCat(
-        title: CategoryConstants.core,
-        image: AssetConstants.planetLogo,
-        cardColor: Theme.of(context).colorScheme.secondary,
-        onTapped: () {
-          navigator<NavigationService>()
-              .navigateTo(CoreRoutes.scienceDetailsRoute);
-        },
-      ),
-      ObjCat(
-        title: CategoryConstants.other,
-        image: AssetConstants.planetLogo,
-        cardColor: Theme.of(context).colorScheme.secondary,
-        onTapped: () {
-          // navigator<NavigationService>()
-          //     .navigateTo(CoreRoutes.scienceDetailsRoute);
-        },
-      ),
-    ];
 
     return SafeArea(
       child: Scaffold(
@@ -111,7 +57,7 @@ class HomeScreenConsumer extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      appStateNotifier.userDto!.email,
+                      appStateNotifier.userDto!.username.toUpperCase(),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Theme.of(context).colorScheme.onSecondaryContainer,
                             fontWeight: FontWeight.w400,
@@ -121,14 +67,14 @@ class HomeScreenConsumer extends StatelessWidget {
                     Text(
                       ' !',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.onSecondaryContainer,
                             fontWeight: FontWeight.w500,
                             fontSize: 14.sp,
                           ),
                     ),
                   ],
                 ),
-                Container(
+                SizedBox(
                     height: 25.h,
                     width: 100.w,
                     child: const Image(
@@ -153,7 +99,7 @@ class HomeScreenConsumer extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           //color: Colors.red,
                           width: 45.w,
                           child: Text(
@@ -169,7 +115,7 @@ class HomeScreenConsumer extends StatelessWidget {
                                     fontSize: 12.sp),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                             height: 10.h,
                             width: 30.w,
                             //color: Colors.yellow,
@@ -184,7 +130,7 @@ class HomeScreenConsumer extends StatelessWidget {
                 SizedBox(
                   height: 2.h,
                 ),
-                Container(
+                SizedBox(
                   //color: Colors.red,
                   height: 18.h,
                   child: Padding(
@@ -193,7 +139,7 @@ class HomeScreenConsumer extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
+                        SizedBox(
                             //height: 10.h,
                             width: 35.w,
                             //color: Colors.yellow,

@@ -2,7 +2,6 @@ import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_not
 import 'package:flutter/material.dart';
 import 'package:major_project/presentation/bookmark/bookmark_screen.dart';
 import 'package:major_project/presentation/home/home_screen.dart';
-import 'package:major_project/presentation/science/science_details_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../wall/wall_screen.dart';
@@ -58,7 +57,7 @@ class _BottomNavConsumerState extends State<BottomNavConsumer> {
         bottomNavigationBar: (bottomBarPages.length <= maxCount)
             ? AnimatedNotchBottomBar(
                 pageController: _pageController,
-                notchColor: Color(0xff536DFE),
+                notchColor: const Color(0xff536DFE),
                // notchColor: Theme.of(context).colorScheme.secondary 
                 color: Colors.black,
                 showBlurBottomBar: true,
@@ -66,7 +65,7 @@ class _BottomNavConsumerState extends State<BottomNavConsumer> {
                 blurFilterX: 2.0,
                 blurFilterY: 2.0,
                 showShadow: false,
-                itemLabelStyle: TextStyle(color: Color(0xff536DFE), fontSize: 8.sp),
+                itemLabelStyle: TextStyle(color: const Color(0xff536DFE), fontSize: 8.sp),
                 bottomBarItems: const [
                   BottomBarItem(
                     inActiveItem: Icon(

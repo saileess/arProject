@@ -6,8 +6,11 @@ class BookmarkState with _$BookmarkState {
     required bool isLoading,
     required bool isSuccess,
     required bool isFailed,
+    required String errorMessage,
     required AppStateNotifier appStateNotifier,
     required ScrollController scrollController,
+    required PlanetRepository planetRepository,
+    required List<PlanetDto> userBookmarkList,
     UserDto? userDto,
   }) = _BookmarkState;
   factory BookmarkState.initial({
@@ -17,7 +20,11 @@ class BookmarkState with _$BookmarkState {
         isFailed: false,
         isLoading: true,
         isSuccess: false,
+        userBookmarkList: [],
+        errorMessage: '',
+        userDto: appStateNotifier.userDto,
         scrollController: ScrollController(),
         appStateNotifier: appStateNotifier,
+        planetRepository: IPlanetRepository()
       );
 }
