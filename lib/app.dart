@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:major_project/domain/themes/app_themes.dart';
-import 'package:major_project/infrastructure/user/user_dto.dart';
+import 'package:major_project/infrastructure/auth/i_auth_repository.dart';
+import 'package:major_project/infrastructure/dtos/user/user_dto.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -20,7 +21,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.of(context)!.appTitle,
       debugShowCheckedModeBanner: false,
-      theme: appThemeData[AppTheme.light],
+      theme: appThemeData[AppTheme.dark],
       builder: (context, child) => Container(
           alignment: Alignment.center,
           decoration: SizerUtil.width == 430
@@ -37,7 +38,7 @@ class MainApp extends StatelessWidget {
           ? authorizedNavigation
           : commonNavigation,
       initialRoute: Provider.of<AppStateNotifier>(context).isAuthorized
-          ? CoreRoutes.homeRoute
+          ? CoreRoutes.bottomnav
           : AuthRoutes.loginRoute,
     );
   }
@@ -50,8 +51,9 @@ Future appInitializer(AppConfig appConfig) async {
 
   if(user != null){
 isAuthorized = true;
-userDto = UserDto(id: user.uid, username: user.displayName!, email: user.email!, college: '', );
+userDto = await IAuthRepository().authenticateUser();
   }
+  isAuthorized = userDto != null;
   
 
   AppStateNotifier appStateNotifier = AppStateNotifier(

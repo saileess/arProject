@@ -14,7 +14,18 @@ class AssetConstants{
 
 //geo images
   static const String earth = '${imagesFolder}darkEarth.jpg';
-  static const String moon = '${imagesFolder}darkMoon.png';
+  static const String core = '${imagesFolder}core.jpg';
+  static const String planet= '${imagesFolder}planet.jpeg';
+  static const String space = '${imagesFolder}space.jpg';
+  static const String other = '${imagesFolder}darkEarth.jpg';
+
+//caterogy logos
+  static const String planetLogo = '${imagesFolder}planetLogo.png';
+
+
+
+
+
 // password icons
   static const String showPasswordSvg = '${vectorsFolder}show.svg';
   static const String hidePasswordSvg = '${vectorsFolder}hide.svg';
@@ -24,16 +35,21 @@ class AssetConstants{
   static const String bio = '${imagesFolder}bio.png';
   static const String geography = '${imagesFolder}geo.png';
 
-//quiz images
-  static const String heartQuiz = '${imagesFolder}heartQuiz.png';
-  static const String lungsQuiz = '${imagesFolder}lungsQuiz.png';
+//card images
+  static const String planetsCard = '${imagesFolder}planets_card.png';
 
 
-  
+  static const String bromine = '${vectorsFolder}bromine.svg';
+  static const String dinosaur = '${vectorsFolder}dinosaurs.svg';
+  static const String clickHereBro = '${vectorsFolder}ClickHereBro.svg';
+  static const String settings = '${vectorsFolder}settings.svg';
+  static const String geo = '${vectorsFolder}geo.svg';
 
 
-  static const String calendar = '${vectorsFolder}calendar.svg';
-  static const String clock = '${vectorsFolder}clock.svg';
-  static const String home = '${vectorsFolder}home.svg';
+
+
+//home page images
+  static const String home = '${imagesFolder}home.png';
 
 }
+

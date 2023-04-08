@@ -1,8 +1,9 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:major_project/infrastructure/user/user_dto.dart';
+import 'package:major_project/infrastructure/dtos/user/user_dto.dart';
 
 import '../../../domain/auth/auth_repository.dart';
 import '../../../domain/configs/app_config.dart';

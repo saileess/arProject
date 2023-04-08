@@ -17,5 +17,12 @@ class CoreRoutes {
 
   static const String quizRoute = 'quizRoute';
 
+  static const String bottomnav = 'bottomNav';
+  static const String planetRoute = 'planets';
+  static const String bookmarkRoute = 'bookmark';
+  static const String wallRoute = 'wall';
 
+
+
+  static const String planetDetails = 'planetDetails';
 }

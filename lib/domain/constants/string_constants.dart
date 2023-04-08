@@ -136,11 +136,19 @@ class HomeConstants{
   static const earth = 'Earth';
   static const moon = 'Moon';
 
-  static const viewArModel = 'View AR Model';
+  static const viewArModel = 'Open camera to view AR model';
 
 }
 
 class ModelConstants{
   static const local = 'Local';
   static const web = 'Web';
+}
+
+class CategoryConstants{
+  static const planet = 'Planets';
+  static const space = 'Space';
+  static const core = 'Core';
+  static const other = 'Others';
+
 }

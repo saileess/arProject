@@ -1,10 +1,13 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:major_project/domain/constants/string_constants.dart';
-import 'package:major_project/presentation/core/widgets/custom_textfield.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:major_project/application/cards/planet/planet_bloc.dart';
+import 'package:major_project/presentation/core/widgets/primary_button.dart';
+import 'package:major_project/presentation/home/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import 'package:major_project/domain/constants/string_constants.dart';
 
 import '../../domain/configs/app_config.dart';
 import '../../domain/configs/injection.dart';
@@ -21,245 +24,379 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+class ObjCat {
+  late String title;
+  late String image;
+  late Function() onTapped;
+  late Color cardColor;
+  ObjCat({
+    required this.title,
+    required this.image,
+    required this.onTapped,
+    required this.cardColor,
+  });
+}
+
 class HomeScreenConsumer extends StatelessWidget {
   const HomeScreenConsumer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final appStateNotifier =  Provider.of<AppStateNotifier>(context, listen: false);
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w, ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 3.h,),
-                      Text(
-                        'Hello',
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.sp,
-                            ),
-                      ),
-                      Text(
-                        appStateNotifier.userDto!.username,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16.sp,
-                            ),
-                      ),
-                    ],
+    final appStateNotifier =
+        Provider.of<AppStateNotifier>(context, listen: false);
+
+    List<ObjCat> categoryObj = [
+      ObjCat(
+        title: CategoryConstants.planet,
+        image: AssetConstants.planetLogo,
+        cardColor: Theme.of(context).colorScheme.primary,
+        onTapped: () {
+          // context.read<PlanetBloc>()
+          //                 .add(const PlanetEvent.fetchPlanets());
+          navigator<NavigationService>().navigateTo(CoreRoutes.planetRoute);
+        },
+      ),
+      ObjCat(
+        title: CategoryConstants.space,
+        image: AssetConstants.planetLogo,
+        cardColor: Theme.of(context).colorScheme.primary,
+        onTapped: () {
+          navigator<NavigationService>()
+              .navigateTo(CoreRoutes.scienceDetailsRoute);
+        },
+      ),
+      ObjCat(
+        title: CategoryConstants.core,
+        image: AssetConstants.planetLogo,
+        cardColor: Theme.of(context).colorScheme.secondary,
+        onTapped: () {
+          navigator<NavigationService>()
+              .navigateTo(CoreRoutes.scienceDetailsRoute);
+        },
+      ),
+      ObjCat(
+        title: CategoryConstants.other,
+        image: AssetConstants.planetLogo,
+        cardColor: Theme.of(context).colorScheme.secondary,
+        onTapped: () {
+          // navigator<NavigationService>()
+          //     .navigateTo(CoreRoutes.scienceDetailsRoute);
+        },
+      ),
+    ];
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 5.w,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 7.h,
+                    ),
+                    Text(
+                      'Hello ',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp,
+                          ),
+                    ),
+                    Text(
+                      appStateNotifier.userDto!.email,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondaryContainer,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp,
+                          ),
+                    ),
+                    Text(
+                      ' !',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                          ),
+                    ),
+                  ],
+                ),
+                Container(
+                    height: 25.h,
+                    width: 100.w,
+                    child: const Image(
+                      image: AssetImage(AssetConstants.home),
+                      fit: BoxFit.contain,
+                    )),
+                SizedBox(
+                  height: 1.h,
+                ),
+                Container(
+                  height: 10.h,
+                  width: 90.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(2.w)),
+                    //color: Theme.of(context).colorScheme.tertiary,
+                    // color: Color(0xFFD1EAFE),
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
                   ),
-                  GestureDetector(
-                    // onTap: (){
-                    //   navigator<NavigationService>().navigateTo(CoreRoutes.myProfileRoute);
-                    // },
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 3.5.h,
-                      child:  appStateNotifier.userDto == null ? Image.asset(AssetConstants.downloadImg, fit: BoxFit.cover, ) : appStateNotifier.userDto!.profileUrl == null ?  Image.asset(AssetConstants.downloadImg, fit: BoxFit.cover,) : 
-                      Image.network(appStateNotifier.userDto!.profileUrl!, fit: BoxFit.cover,),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          //color: Colors.red,
+                          width: 45.w,
+                          child: Text(
+                            'Click to checkout our upcoming models !!!!',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onTertiary,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12.sp),
+                          ),
+                        ),
+                        Container(
+                            height: 10.h,
+                            width: 30.w,
+                            //color: Colors.yellow,
+                            child: SvgPicture.asset(
+                              AssetConstants.clickHereBro,
+                              fit: BoxFit.contain,
+                            ))
+                      ],
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              CustomTextField(
-                hintText: 'Search Topic...',
-                customFillColor: true,
-                fillColor: Theme.of(context).colorScheme.primary,
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              CustomTopicText(subject: HomeConstants.science, onViewMore: (){
-                navigator<NavigationService>()
-                      .navigateTo(CoreRoutes.scienceDetailsRoute);
-              },),
-              SizedBox(
-                height: 1.h,
-              ),
-              SizedBox(
-                height: 30.h,
-                child: Expanded(
-      
-                    child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.4.w,
-                          crossAxisSpacing: 3.w,
-                          mainAxisSpacing: 3.w,
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Container(
+                  //color: Colors.red,
+                  height: 18.h,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                            //height: 10.h,
+                            width: 35.w,
+                            //color: Colors.yellow,
+                            child: SvgPicture.asset(
+                              AssetConstants.settings,
+                              fit: BoxFit.contain,
+                            )),
+                        Column(
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                Text(
+                                  'Display Mode',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .tertiary,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12.sp),
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                SizedBox(
+                                  width: 50.w,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 2.w),
+                                    child: Text(
+                                      'This setting is applied for the content across the app',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiary,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 10.sp),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    PrimaryButton(
+                                      text: 'Dark',
+                                      onPressed: () {},
+                                      height: 4.h,
+                                      width: 10.w,
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      borderColor: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      textColor: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary,
+                                      elevation: 0,
+                                      borderRadius: 1.w,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    PrimaryButton(
+                                      text: 'Light',
+                                      onPressed: () {},
+                                      height: 4.h,
+                                      width: 10.w,
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      borderColor: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      textColor: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary,
+                                      elevation: 0,
+                                      borderRadius: 1.w,
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                // SizedBox(
+                //   height: 1.h,
+                // ),
+                Text(
+                                  'Caterory',
+                                  textAlign: TextAlign.left,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .tertiary,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14.sp),
+                                ),
+                                SizedBox(height: 1.h,),
+                GestureDetector(
+                  onTap: () {navigator<NavigationService>().navigateTo(CoreRoutes.planetRoute);},
+                  child: Container(
+                    width: 90.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(3.5.w),
+                    ),
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              height: 10.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(3.w),
+                                  topRight: Radius.circular(3.w),
+                                ),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
+                            ),
+                            Positioned(
+                                top: 2.h,
+                                bottom: 1.h,
+                                left: 1.h,
+                                child: SizedBox(
+                                    height: 8.h,
+                                    width: 8.h,
+                                    child: SvgPicture.asset(
+                                        AssetConstants.geo)))
+                          ],
                         ),
-                        itemCount: 4,
-                        itemBuilder: (ctx, i) => CustomTopicCard(
-                            icon: i.isEven
-                                ? AssetConstants.heart
-                                : AssetConstants.brain,
-                            cardText: i.isEven
-                                ? HomeConstants.humanHeart
-                                : HomeConstants.humanBrain,
-                                
-                                ))),
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              CustomTopicText(
-                subject: HomeConstants.geography,
-                onViewMore: () {
-                  navigator<NavigationService>()
-                      .navigateTo(CoreRoutes.geographyDetailsRoute);
-                },
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-      
-              SizedBox(
-                height: 30.h,
-                child: Expanded(
-      
-                    child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.4.w,
-                          crossAxisSpacing: 3.w,
-                          mainAxisSpacing: 3.w,
+                        SizedBox(
+                          height: 1.h,
                         ),
-                        itemCount: 4,
-                        itemBuilder: (ctx, i) => CustomTopicCard(
-                            icon: i.isEven
-                                ? AssetConstants.earth
-                                : AssetConstants.moon,
-                            cardText: i.isEven
-                                ? HomeConstants.earth
-                                : HomeConstants.moon))),
-              ),
-              // SizedBox(
-              //   height: 30.h,
-              //   child: Expanded(
-              //       child: GridView.builder(
-              //           physics: const NeverScrollableScrollPhysics(),
-              //           padding: EdgeInsets.symmetric(horizontal:2.w, vertical: 1.h),
-              //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //             crossAxisCount: 2,
-              //             childAspectRatio: 0.4.w,
-              //             crossAxisSpacing: 1.w,
-              //             mainAxisSpacing: 1.w,
-              //           ),
-              //           itemCount: 4,
-              //           itemBuilder: (ctx, i) => CustomTopicCard(
-              //               icon: i.isEven
-              //                   ? AssetConstants.earth
-              //                   : AssetConstants.moon,
-              //               CardText: i.isEven
-              //                   ? HomeConstants.earth
-              //                   : HomeConstants.moon))),
-              // ),
-            ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.w),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Geography',
+                                textAlign: TextAlign.left,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background),
+                              ),
+                              Text(
+                                '>',
+                                textAlign: TextAlign.left,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomTopicCard extends StatelessWidget {
-  final String icon;
-  final String cardText;
-
-  const CustomTopicCard({Key? key, required this.icon, required this.cardText})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2.w),
-            image: DecorationImage(image: AssetImage(icon), fit: BoxFit.cover),
-          ),
-        ),
-        Positioned(
-            bottom: 4.h,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2.w),
-              child: Text(
-                cardText,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: Theme.of(context).colorScheme.background),
-              ),
-            ))
-      ],
-    );
-  }
-}
-
-class CustomTopicText extends StatelessWidget {
-  final String subject;
-  final Function() onViewMore;
-
-  const CustomTopicText(
-      {Key? key, required this.subject, required this.onViewMore})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Text(
-              subject,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              width: 1.w,
-            ),
-            Text(
-              HomeConstants.relatedTopic,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
-        GestureDetector(
-          onTap: onViewMore,
-          child: Text(
-            HomeConstants.viewMore,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.w500,
-                decoration: TextDecoration.underline),
-          ),
-        ),
-      ],
     );
   }
 }

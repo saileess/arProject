@@ -1,7 +1,7 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:major_project/infrastructure/user/user_dto.dart';
+import 'package:major_project/infrastructure/dtos/user/user_dto.dart';
 
 
 abstract class AuthRepository {
@@ -25,4 +25,6 @@ abstract class AuthRepository {
 
   Future<Either<String, bool>> resetPassword(
       {required String newPassword, required String oobCode});
+
+      Future<UserDto?> authenticateUser();
 }

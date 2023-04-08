@@ -1,17 +1,16 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:major_project/domain/auth/auth_repository.dart';
-import 'package:major_project/infrastructure/user/user_dto.dart';
+import 'package:major_project/infrastructure/dtos/user/user_dto.dart';
 import '../../domain/constants/string_constants.dart';
 
 class IAuthRepository extends AuthRepository{
   final _firestore = FirebaseFirestore.instance;
-
-
-  @override
 
 
   @override
@@ -232,7 +231,32 @@ Future<Either<String, UserDto>> signInWithGoogle() async {
     }
 
 
-
+@override
+  Future<UserDto?> authenticateUser() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        final completer = Completer<User?>();
+        FirebaseAuth.instance.authStateChanges().listen((event) {
+          if (event != null) {
+            completer.complete(event);
+          } else {
+            Future.delayed(const Duration(seconds: 2)).then((value) =>
+                {if (!completer.isCompleted) completer.complete(event)});
+}
+        });
+        user = await completer.future;
+      }
+      final userObject = await _firestore
+          .collection('users')
+          .doc(user!.uid)
+          .get();
+      final userDto = UserDto.fromJson(userObject.data()!);
+      return userDto;
+    } catch (err) {
+      rethrow;
+    }
+  }
 
 
 }

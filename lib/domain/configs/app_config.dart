@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:major_project/infrastructure/user/user_dto.dart';
+import 'package:major_project/infrastructure/dtos/user/user_dto.dart';
 
 class AppStateNotifier extends ChangeNotifier {
   bool isAuthorized;

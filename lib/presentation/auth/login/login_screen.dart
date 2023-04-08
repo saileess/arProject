@@ -43,7 +43,7 @@ class LoginScreenConsumer extends StatelessWidget {
                   isAuthorized: true, userDto: state.userDto!);
           Future.delayed(const Duration(milliseconds: 500)).then((x) async {
             navigator<NavigationService>()
-                .navigateTo(CoreRoutes.homeRoute, isClearStack: true);
+                .navigateTo(CoreRoutes.bottomnav, isClearStack: true);
           });
         } else if (state.isFailed) {
           if (state.errorMessage.isNotEmpty) {
@@ -159,7 +159,8 @@ class LoginScreenConsumer extends StatelessWidget {
                                           : AssetConstants.hidePasswordSvg,
                                       fit: BoxFit.cover,
                                       alignment: Alignment.centerRight,
-                                    )),
+                                    )
+                                    ),
                                   ),
                                 ),
                               ),

@@ -85,7 +85,7 @@ class ScienceDeatailScreenConsumer extends StatelessWidget {
                         crossAxisSpacing: 4.w,
                         mainAxisSpacing: 4.w,
                       ),
-                      itemCount: 8,
+                      itemCount: 6,
                       itemBuilder: (ctx, i) => ModuleCard(
                           image: AssetConstants.heart, topic: HomeConstants.humanHeartBasics, onClick: (){
                             navigator<NavigationService>().navigateTo(CoreRoutes.moduleDetailRoute);

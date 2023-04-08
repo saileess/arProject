@@ -8,7 +8,7 @@ import '../../../domain/auth/auth_repository.dart';
 import '../../../domain/configs/app_config.dart';
 import '../../../domain/constants/string_constants.dart';
 import '../../../infrastructure/auth/i_auth_repository.dart';
-import '../../../infrastructure/user/user_dto.dart';
+import '../../../infrastructure/dtos/user/user_dto.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
