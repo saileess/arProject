@@ -26,6 +26,7 @@ mixin _$PlanetDto {
   String get imageUrl => throw _privateConstructorUsedError;
   String get detail => throw _privateConstructorUsedError;
   String get docID => throw _privateConstructorUsedError;
+  String get fileName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $PlanetDtoCopyWith<$Res> {
       String smallPara,
       String imageUrl,
       String detail,
-      String docID});
+      String docID,
+      String fileName});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$PlanetDtoCopyWithImpl<$Res> implements $PlanetDtoCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? detail = freezed,
     Object? docID = freezed,
+    Object? fileName = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -88,6 +91,10 @@ class _$PlanetDtoCopyWithImpl<$Res> implements $PlanetDtoCopyWith<$Res> {
           ? _value.docID
           : docID // ignore: cast_nullable_to_non_nullable
               as String,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -104,7 +111,8 @@ abstract class _$$_PlanetDtoCopyWith<$Res> implements $PlanetDtoCopyWith<$Res> {
       String smallPara,
       String imageUrl,
       String detail,
-      String docID});
+      String docID,
+      String fileName});
 }
 
 /// @nodoc
@@ -125,6 +133,7 @@ class __$$_PlanetDtoCopyWithImpl<$Res> extends _$PlanetDtoCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? detail = freezed,
     Object? docID = freezed,
+    Object? fileName = freezed,
   }) {
     return _then(_$_PlanetDto(
       name: name == freezed
@@ -151,6 +160,10 @@ class __$$_PlanetDtoCopyWithImpl<$Res> extends _$PlanetDtoCopyWithImpl<$Res>
           ? _value.docID
           : docID // ignore: cast_nullable_to_non_nullable
               as String,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -164,7 +177,8 @@ class _$_PlanetDto implements _PlanetDto {
       required this.smallPara,
       required this.imageUrl,
       required this.detail,
-      required this.docID});
+      required this.docID,
+      required this.fileName});
 
   factory _$_PlanetDto.fromJson(Map<String, dynamic> json) =>
       _$$_PlanetDtoFromJson(json);
@@ -181,10 +195,12 @@ class _$_PlanetDto implements _PlanetDto {
   final String detail;
   @override
   final String docID;
+  @override
+  final String fileName;
 
   @override
   String toString() {
-    return 'PlanetDto(name: $name, readTime: $readTime, smallPara: $smallPara, imageUrl: $imageUrl, detail: $detail, docID: $docID)';
+    return 'PlanetDto(name: $name, readTime: $readTime, smallPara: $smallPara, imageUrl: $imageUrl, detail: $detail, docID: $docID, fileName: $fileName)';
   }
 
   @override
@@ -197,7 +213,8 @@ class _$_PlanetDto implements _PlanetDto {
             const DeepCollectionEquality().equals(other.smallPara, smallPara) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality().equals(other.detail, detail) &&
-            const DeepCollectionEquality().equals(other.docID, docID));
+            const DeepCollectionEquality().equals(other.docID, docID) &&
+            const DeepCollectionEquality().equals(other.fileName, fileName));
   }
 
   @JsonKey(ignore: true)
@@ -209,7 +226,8 @@ class _$_PlanetDto implements _PlanetDto {
       const DeepCollectionEquality().hash(smallPara),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(detail),
-      const DeepCollectionEquality().hash(docID));
+      const DeepCollectionEquality().hash(docID),
+      const DeepCollectionEquality().hash(fileName));
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +249,8 @@ abstract class _PlanetDto implements PlanetDto {
       required final String smallPara,
       required final String imageUrl,
       required final String detail,
-      required final String docID}) = _$_PlanetDto;
+      required final String docID,
+      required final String fileName}) = _$_PlanetDto;
 
   factory _PlanetDto.fromJson(Map<String, dynamic> json) =
       _$_PlanetDto.fromJson;
@@ -248,6 +267,8 @@ abstract class _PlanetDto implements PlanetDto {
   String get detail;
   @override
   String get docID;
+  @override
+  String get fileName;
   @override
   @JsonKey(ignore: true)
   _$$_PlanetDtoCopyWith<_$_PlanetDto> get copyWith =>

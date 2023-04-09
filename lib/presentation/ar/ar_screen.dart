@@ -46,19 +46,19 @@ class _ArObjectScreenState extends State<ArObjectScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PrimaryButton(
-                    text: 'Add Object',
+                    text: 'Add ${widget.name}',
                     onPressed: () {
                       onAddObjectPressed();
                     },
                     height: 5.h,
-                    width: 15.w,
+                    width: 20.w,
                     textColor: Theme.of(context).colorScheme.onTertiary,
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     borderColor: Theme.of(context).colorScheme.primary,
                     ),
 
                 PrimaryButton(
-                    text: 'Remove Object',
+                    text: 'Remove ${widget.name}',
                     onPressed: () {
                       onRemoveObjectPressed();
                     },

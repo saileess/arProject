@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:major_project/application/cards/planet/planet_bloc.dart';
 import 'package:major_project/domain/constants/assets_constants.dart';
 import 'package:provider/provider.dart';
@@ -215,10 +216,8 @@ class WhiteSquare extends StatelessWidget {
               SizedBox(
                   // color: Colors.red,
                   height: 30.h,
-                  child: const Image(
-                    image: AssetImage(AssetConstants.planetsCard),
-                    fit: BoxFit.cover,
-                  )),
+                  child: SvgPicture.asset(AssetConstants.planetbro, fit: BoxFit.contain,)
+                  ),
               SizedBox(
                 height: 1.h,
               ),

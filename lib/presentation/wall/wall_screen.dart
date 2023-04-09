@@ -39,9 +39,12 @@ class WallScreenConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ObjColors> listOfColorsAndsvgs = [
+      ObjColors(cardColor: const Color(0xFFCBD3FA), svgImage: AssetConstants.astronaut),
       ObjColors(cardColor: const Color(0xFFEEC0C0), svgImage: AssetConstants.bromine),
-      ObjColors(
-          cardColor: const Color(0xFFC3E0C3), svgImage: AssetConstants.dinosaur),
+      ObjColors(cardColor: const Color(0xFFC3E0C3), svgImage: AssetConstants.copper),
+      ObjColors(cardColor: const Color(0xFFF8DDF0), svgImage: AssetConstants.magnesium),
+      ObjColors(cardColor: const Color(0xFFC3E0C3), svgImage: AssetConstants.dinosaur),
+      ObjColors(cardColor: const Color(0xFFFFE0A6), svgImage: AssetConstants.sulhpur),
     ];
     return BlocConsumer<WallBloc, WallState>(
       listener: (context, state) {},

@@ -9,12 +9,9 @@ import 'package:major_project/presentation/bookmark/bookmark_screen.dart';
 import 'package:major_project/presentation/home/bottomnavbar.dart';
 import 'package:major_project/presentation/planets/planets_detail_screen.dart';
 import 'package:major_project/presentation/planets/planets_screen.dart';
-import 'package:major_project/presentation/science/science_details_screen.dart';
-import 'package:major_project/presentation/science/topic_detail_screen.dart';
 import 'package:major_project/presentation/wall/wall_detail_screen.dart';
 import '../../../../presentation/auth/login/login_screen.dart';
 import '../../../../presentation/auth/register/signup_screen.dart';
-import '../../../../presentation/geography/geo_detail_screen.dart';
 import '../../../../presentation/home/home_screen.dart';
 import '../../../../presentation/wall/wall_screen.dart';
 Route<dynamic> authorizedNavigation(RouteSettings settings) {
@@ -22,12 +19,6 @@ Route<dynamic> authorizedNavigation(RouteSettings settings) {
   switch (routingData.route) {
     case CoreRoutes.homeRoute:
       return _getPageRoute(const HomeScreen(), settings);
-    case CoreRoutes.scienceDetailsRoute:
-      return _getPageRoute(const ScienceDetailScreen(), settings);
-    case CoreRoutes.geographyDetailsRoute:
-      return _getPageRoute(const GeographyDetailScreen(), settings);
-    case CoreRoutes.moduleDetailRoute:
-      return _getPageRoute(const TopicDetailScreen(), settings);
     case CoreRoutes.bottomnav:
       return _getPageRoute(const BottomNav(), settings);
     case CoreRoutes.bookmarkRoute:

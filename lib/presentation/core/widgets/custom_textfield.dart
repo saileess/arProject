@@ -46,6 +46,8 @@ class CustomTextField extends StatelessWidget {
     this.customFillColor = false,
     this.customBackgroundColor = false,
     this.backgroundColor,
+    this.labelTextColor,
+    this.isLabelTextColor = false,
 
   }) : super(key: key);
 
@@ -89,6 +91,10 @@ class CustomTextField extends StatelessWidget {
   final bool? customFillColor;
   final bool? customBackgroundColor;
   final Color? backgroundColor;
+  final Color? labelTextColor;
+  final bool? isLabelTextColor;
+
+
 
 
 
@@ -102,11 +108,12 @@ class CustomTextField extends StatelessWidget {
     );
 
     TextFormField textFormField = TextFormField(
-      style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontSize: 11.sp, fontWeight: FontWeight.w500),
+      style: TextStyle(color: Colors.black
+      , fontSize: 11.sp, fontWeight: FontWeight.w500),
       
       controller: controller,
       initialValue: initialVal,
-      cursorColor: Theme.of(context).primaryColor,
+      cursorColor: Colors.black,
       cursorHeight: isUpload ? 0 : null,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
       cursorWidth: isUpload ? 0 : 2.0,
@@ -148,13 +155,14 @@ class CustomTextField extends StatelessWidget {
             : null,
         hintText: hintText, 
         
+        
         contentPadding: EdgeInsets.symmetric(
           // vertical: 1.sp,
           horizontal: 10.sp,
         ).copyWith(right: suffixIcon == null ? 10.sp : 0),
         hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith (
-          color: Theme.of(context).colorScheme.onSecondary,
-          fontWeight: FontWeight.w300, fontSize: 10.sp
+          color: Colors.black,
+          fontWeight: FontWeight.w200, fontSize: 10.sp
         ),
         // hintStyle: TextStyle(
         //   overflow: TextOverflow.ellipsis,
@@ -187,7 +195,7 @@ class CustomTextField extends StatelessWidget {
                       Text(
                         labelText!,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.tertiary, fontWeight: FontWeight.w400, fontSize: 11.sp
+                          color: isLabelTextColor! ? labelTextColor:   Theme.of(context).colorScheme.tertiary, fontWeight: FontWeight.w400, fontSize: 11.sp
                         ),
                       ),
                     ],

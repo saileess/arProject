@@ -16,6 +16,8 @@ class PlanetDto with _$PlanetDto {
     required String imageUrl,
     required String detail,
     required String docID,
+    required String fileName,
+
   }) = _PlanetDto;
 
   factory PlanetDto.fromJson(Map<String, dynamic> json) => _$PlanetDtoFromJson(

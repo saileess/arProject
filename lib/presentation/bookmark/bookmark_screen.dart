@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:major_project/domain/configs/injection.dart';
+import 'package:major_project/domain/constants/assets_constants.dart';
 import 'package:major_project/domain/services/navigation_services/navigation_service.dart';
 import 'package:major_project/domain/services/navigation_services/routers/route_name.dart';
 import 'package:major_project/infrastructure/dtos/planet_dto/planet_dto.dart';
@@ -59,12 +61,15 @@ class BookmarkScreenConsumer extends StatelessWidget {
                             fontSize: 16.sp),
                       ),
                     ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
                     Divider(
                       thickness: 0.3,
                       color: Theme.of(context).colorScheme.onPrimaryContainer,
                     ),
                     SizedBox(
-                      height: 5.h,
+                      height: 2.h,
                     ),
                     Expanded(
                       child: ListView.separated(
@@ -96,7 +101,7 @@ class BookmarkScreenConsumer extends StatelessWidget {
                                             right: 1.w,
                                             left: 1.w,
                                             top: 1.h,
-                                            bottom: 17.h),
+                                            bottom: 1.h),
                                       ),
                     ),
                   ]),
@@ -123,88 +128,59 @@ class BookmarkCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTapped,
       child: Container(
-        height: 15.h,
-        width: 100.w,
+        height: 14.h,
+        width: 90.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(2.w)),
-          color: Theme.of(context).colorScheme.tertiary,
+          //color: Theme.of(context).colorScheme.tertiary,
+          color: Colors.white,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              children: [
-                Container(
-                  height: 5.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(2.w),
-                      topRight: Radius.circular(2.w),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 1.h,
                     ),
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                Positioned(
-                    top: 1.h,
-                    bottom: 0.5.h,
-                    left: 4.w,
-                    child: SizedBox(
-                      // height: 4.h,
-                      // width: 4.h,
+                    Text(
+                      planetDto.name,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onTertiary,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    SizedBox(
+                      width: 40.w,
                       child: Text(
-                        planetDto.name,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiary,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.sp),
+                        'Module: Geography',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 12.sp),
                       ),
-                    ))
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Text(
-                    'Chapter: Earth',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onTertiary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12.sp),
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Text(
-                    'Module: Geography',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onTertiary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12.sp),
-                  ),
-                ],
-              ),
-            )
-          ],
+                    ),
+                  ],
+                ),
+              
+              Container(
+                //color: Colors.red,
+                  height: 15.h,
+                  width: 40.w,
+                  //color: Colors.yellow,
+                  child: SvgPicture.asset(
+                    AssetConstants.bookmark,
+                    fit: BoxFit.cover,
+                  )
+                  )
+            ],
+          ),
         ),
       ),
     );

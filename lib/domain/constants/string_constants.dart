@@ -34,7 +34,7 @@ class AuthConstants {
   static const signIn = 'Sign In';
   static const sendEmail = 'Send Email';
   static const weWillSendLink = 'We will send you a link to reset your password on your registered email address.';
-  static const hintTextEmail = 'Enter Email';
+  static const hintTextEmail = 'Enter Email Address';
   static const password = 'Password';
   static const confirmPassword = 'Confirm Password';
   static const login = 'Login';
@@ -99,7 +99,7 @@ class ErrorConstants {
       'Failed to send reset password link. Please try again!';
 
   static String wrongPassword =
-      'Wrong password. Use the eye icon to check password';
+      'Wrong password. Please try again!';
 
   static String wrongConfirmPassword = 'Password didn\'t match';
   static String expiredActionCode = 'Action code is expired';

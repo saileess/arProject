@@ -49,7 +49,7 @@ class _BottomNavConsumerState extends State<BottomNavConsumer> {
     return Scaffold(
         body: PageView(
           controller: _pageController,
-         // physics: NeverScrollableScrollPhysics(),
+          // physics: NeverScrollableScrollPhysics(),
           children: List.generate(
               bottomBarPages.length, (index) => bottomBarPages[index]),
         ),
@@ -57,49 +57,49 @@ class _BottomNavConsumerState extends State<BottomNavConsumer> {
         bottomNavigationBar: (bottomBarPages.length <= maxCount)
             ? AnimatedNotchBottomBar(
                 pageController: _pageController,
-                notchColor: const Color(0xff536DFE),
-               // notchColor: Theme.of(context).colorScheme.secondary 
+                notchColor: Theme.of(context).colorScheme.onSecondaryContainer,
                 color: Colors.black,
                 showBlurBottomBar: true,
                 blurOpacity: 0.9,
                 blurFilterX: 2.0,
                 blurFilterY: 2.0,
                 showShadow: false,
-                itemLabelStyle: TextStyle(color: const Color(0xff536DFE), fontSize: 8.sp),
-                bottomBarItems: const [
+                itemLabelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                    fontSize: 8.sp),
+                bottomBarItems: [
                   BottomBarItem(
                     inActiveItem: Icon(
                       Icons.home_outlined,
-                      color: Color(0xff536DFE),
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
-                    activeItem: Icon(
+                    activeItem: const Icon(
                       Icons.home_filled,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     itemLabel: 'Home',
                   ),
                   BottomBarItem(
                     inActiveItem: Icon(
-                      Icons.star_outline,
-                      color: Color(0xff536DFE),
+                      Icons.add_to_photos_outlined,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
-                    activeItem: Icon(
-                      Icons.star,
-                      color: Colors.white,
+                    activeItem: const Icon(
+                      Icons.add_to_photos_sharp,
+                      color: Colors.black,
                     ),
                     itemLabel: 'The Wall',
                   ),
                   BottomBarItem(
                     inActiveItem: Icon(
                       Icons.bookmark_outline,
-                      color: Color(0xff536DFE),
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
-                    activeItem: Icon(
+                    activeItem: const Icon(
                       Icons.bookmark,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     itemLabel: 'Bookmark',
-                    
                   ),
                 ],
                 onTap: (index) {
@@ -107,7 +107,6 @@ class _BottomNavConsumerState extends State<BottomNavConsumer> {
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeIn);
                 })
-            : null
-            );
+            : null);
   }
 }

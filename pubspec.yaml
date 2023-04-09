@@ -89,9 +89,15 @@ flutter:
     - assets/fonts/
     - assets/vectors/
 
-    - assets/models/virtualCity/
     - assets/models/earth/
-    - assets/models/solar/
+    - assets/models/saturn/
+    - assets/models/lunar/
+    - assets/models/terrain/
+
+
+
+
+
 
 
 

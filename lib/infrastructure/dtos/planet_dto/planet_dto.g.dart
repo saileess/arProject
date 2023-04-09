@@ -13,6 +13,7 @@ _$_PlanetDto _$$_PlanetDtoFromJson(Map<String, dynamic> json) => _$_PlanetDto(
       imageUrl: json['imageUrl'] as String,
       detail: json['detail'] as String,
       docID: json['docID'] as String,
+      fileName: json['fileName'] as String,
     );
 
 Map<String, dynamic> _$$_PlanetDtoToJson(_$_PlanetDto instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_PlanetDtoToJson(_$_PlanetDto instance) =>
       'imageUrl': instance.imageUrl,
       'detail': instance.detail,
       'docID': instance.docID,
+      'fileName': instance.fileName,
     };

@@ -63,8 +63,8 @@ class SignUpScreenConsumer extends StatelessWidget {
               AuthConstants.signUp,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.tertiary,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp),
+                  fontWeight: FontWeight.w300,
+                  fontSize: 16.sp),
             ),
             leading: GestureDetector(
               onTap: () {
@@ -82,15 +82,26 @@ class SignUpScreenConsumer extends StatelessWidget {
               child: Form(
                 key: state.formKey,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 27.h,
+                        width: 80.w,
+                          child: SvgPicture.asset(
+                        AssetConstants.register,
+                        fit: BoxFit.contain,
+                      )),
                       CustomTextField(
                         inputWithLabel: true,
                         labelText: AuthConstants.userName,
                         hintText: AuthConstants.hintUsernameText,
-                        customFillColor: true,
-                        fillColor: Theme.of(context).colorScheme.primary,
+                        isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              customFillColor: true,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                         controller: state.usernameController,
                         errorText: state.errorUsername.isNotEmpty
                             ? state.errorUsername
@@ -112,8 +123,12 @@ class SignUpScreenConsumer extends StatelessWidget {
                         hintText: AuthConstants.hintCollegeText,
                         labelText: AuthConstants.userCollege,
                         controller: state.userCollegeController,
-                        customFillColor: true,
-                        fillColor: Theme.of(context).colorScheme.primary,
+                        isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              customFillColor: true,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                         errorText: state.errorUserCollege.isNotEmpty
                             ? state.errorUserCollege
                             : null,
@@ -132,8 +147,12 @@ class SignUpScreenConsumer extends StatelessWidget {
                       CustomTextField(
                         hintText: AuthConstants.hintTextEmail,
                         inputWithLabel: true,
-                        customFillColor: true,
-                        fillColor: Theme.of(context).colorScheme.primary,
+                        isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              customFillColor: true,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                         labelText: AuthConstants.emailAddress,
                         controller: state.userEmailController,
                         errorText: state.errorEmail.isNotEmpty
@@ -156,9 +175,14 @@ class SignUpScreenConsumer extends StatelessWidget {
                         inputWithLabel: true,
                         hintText: AuthConstants.password,
                         labelText: AuthConstants.password,
+                        obscureText: true,
                         controller: state.passwordController,
-                        customFillColor: true,
-                        fillColor: Theme.of(context).colorScheme.primary,
+                        isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              customFillColor: true,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                         errorText: state.errorPassword.isNotEmpty
                             ? state.errorPassword
                             : null,
@@ -171,36 +195,15 @@ class SignUpScreenConsumer extends StatelessWidget {
                               .read<SignUpBloc>()
                               .add(const SignUpEvent.onPasswordChanged());
                         },
-                        suffixIcon: InkWell(
-                          onTap: () {
-                            BlocProvider.of<SignUpBloc>(context)
-                                .add(SignUpEvent.emitFromAnywhere(
-                              state: state.copyWith(
-                                  obscurePassword: !state.obscurePassword),
-                            ));
-                          },
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: SizedBox(
-                              width: 10.w,
-                              child: Center(
-                                  child: SvgPicture.asset(
-                                state.obscurePassword
-                                    ? AssetConstants.showPasswordSvg
-                                    : AssetConstants.hidePasswordSvg,
-                                fit: BoxFit.cover,
-                                alignment: Alignment.centerRight,
-                              )),
-                            ),
-                          ),
-                        ),
                       ),
                       SizedBox(
-                        height: 4.h,
+                        height: 3.h,
                       ),
                       PrimaryButton(
                         text: AuthConstants.signUp,
-                        height: 6.h,
+                        textColor:
+                                  Theme.of(context).colorScheme.background,
+                        height: 5.5.h,
                         onPressed: () {
                           if (state.formKey.currentState!.validate()) {
                             context
@@ -208,24 +211,29 @@ class SignUpScreenConsumer extends StatelessWidget {
                                 .add(const SignUpEvent.onSignUpPressed());
                           }
                         },
-                        backgroundColor: Theme.of(context).primaryColor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        elevation: 0,
-                        borderRadius: 8.w,
+                        backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              borderColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              elevation: 0,
+                              borderRadius: 2.w,
                       ),
                     ],
                   ),
                 ),
               )),
           bottomNavigationBar: Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.h),
+            padding: EdgeInsets.symmetric(vertical: 1.h),
             child: Text(
               AuthConstants.termsAndConditions,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context).colorScheme.tertiary,
-                  fontSize: 10.sp,
+                  fontSize: 8.sp,
                   fontWeight: FontWeight.w300),
             ),
           ),

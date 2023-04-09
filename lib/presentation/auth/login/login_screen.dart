@@ -59,16 +59,11 @@ class LoginScreenConsumer extends StatelessWidget {
             elevation: 0,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: Text(
-              AuthConstants.signIn,
+              AuthConstants.login,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.tertiary,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp),
-            ),
-            leading: Icon(
-              Icons.arrow_back_ios,
-              color: Theme.of(context).colorScheme.tertiary,
-              size: 5.w,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 16.sp),
             ),
           ),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -81,15 +76,15 @@ class LoginScreenConsumer extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 3.h,
-                      ),
-                      const Image(
-                        alignment: Alignment.center,
-                        image: AssetImage(AssetConstants.loginLogo),
-                        fit: BoxFit.cover,
-                      ),
+                        height: 30.h,
+                        width: 80.w,
+                        //color: Colors.red,
+                          child: SvgPicture.asset(
+                        AssetConstants.login,
+                        fit: BoxFit.contain,
+                      )),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        padding: EdgeInsets.symmetric(horizontal: 5.w,),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,8 +97,12 @@ class LoginScreenConsumer extends StatelessWidget {
                               inputWithLabel: true,
                               labelText: AuthConstants.emailAddress,
                               controller: state.userEmailController,
+                              isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                               customFillColor: true,
-                              fillColor: Theme.of(context).colorScheme.primary,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                               errorText: state.errorEmail.isNotEmpty
                                   ? state.errorEmail
                                   : null,
@@ -124,9 +123,14 @@ class LoginScreenConsumer extends StatelessWidget {
                               inputWithLabel: true,
                               hintText: AuthConstants.password,
                               labelText: AuthConstants.password,
+                              isLabelTextColor: true,
+                              labelTextColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                               controller: state.passwordController,
+                              obscureText: true,
                               customFillColor: true,
-                              fillColor: Theme.of(context).colorScheme.primary,
+                              fillColor: Theme.of(context).colorScheme.tertiary,
                               errorText: state.errorPassword.isNotEmpty
                                   ? state.errorPassword
                                   : null,
@@ -139,31 +143,31 @@ class LoginScreenConsumer extends StatelessWidget {
                                     .read<LoginBloc>()
                                     .add(const LoginEvent.onPasswordChanged());
                               },
-                              suffixIcon: InkWell(
-                                onTap: () {
-                                  BlocProvider.of<LoginBloc>(context)
-                                      .add(LoginEvent.emitFromAnywhere(
-                                    state: state.copyWith(
-                                        obscurePassword:
-                                            !state.obscurePassword),
-                                  ));
-                                },
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: SizedBox(
-                                    width: 10.w,
-                                    child: Center(
-                                        child: SvgPicture.asset(
-                                      state.obscurePassword
-                                          ? AssetConstants.showPasswordSvg
-                                          : AssetConstants.hidePasswordSvg,
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.centerRight,
-                                    )
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // suffixIcon: InkWell(
+                              //   onTap: () {
+                              //     BlocProvider.of<LoginBloc>(context)
+                              //         .add(LoginEvent.emitFromAnywhere(
+                              //       state: state.copyWith(
+                              //           obscurePassword:
+                              //               !state.obscurePassword),
+                              //     ));
+                              //   },
+                              //   child: ClipRRect(
+                              //     borderRadius: BorderRadius.circular(20),
+                              //     child: SizedBox(
+                              //       width: 10.w,
+                              //       child: Center(
+                              //           child: SvgPicture.asset(
+                              //         state.obscurePassword
+                              //             ? AssetConstants.showPasswordSvg
+                              //             : AssetConstants.hidePasswordSvg,
+                              //         fit: BoxFit.cover,
+                              //         alignment: Alignment.centerRight,
+                              //       )
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                             ),
                             SizedBox(
                               height: 2.h,
@@ -198,7 +202,8 @@ class LoginScreenConsumer extends StatelessWidget {
                                           .bodySmall!
                                           .copyWith(
                                               color: Theme.of(context)
-                                                  .primaryColor,
+                                                  .colorScheme
+                                                  .onSecondaryContainer,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 11.sp),
                                     ))
@@ -208,7 +213,9 @@ class LoginScreenConsumer extends StatelessWidget {
                               height: 3.h,
                             ),
                             PrimaryButton(
-                              text: AuthConstants.signIn,
+                              text: AuthConstants.login,
+                              textColor:
+                                  Theme.of(context).colorScheme.background,
                               height: 6.h,
                               onPressed: () {
                                 if (state.formKey.currentState!.validate()) {
@@ -217,17 +224,26 @@ class LoginScreenConsumer extends StatelessWidget {
                                       .add(const LoginEvent.onLoginPressed());
                                 }
                               },
-                              backgroundColor: Theme.of(context).primaryColor,
-                              fontSize: 12.sp,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              borderColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                               elevation: 0,
-                              borderRadius: 8.w,
+                              borderRadius: 2.w,
                             ),
                             SizedBox(
-                              height: 3.h,
+                              height: 5.h,
                             ),
                             Row(children: [
-                              const Expanded(child: Divider(thickness: 1)),
+                              const Expanded(
+                                  child: Divider(
+                                thickness: 0.5,
+                                color: Colors.white,
+                              )),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3.w),
                                 child: Text(AppConstants.or,
@@ -241,7 +257,11 @@ class LoginScreenConsumer extends StatelessWidget {
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w300)),
                               ),
-                              const Expanded(child: Divider(thickness: 1)),
+                              const Expanded(
+                                  child: Divider(
+                                thickness: 0.5,
+                                color: Colors.white,
+                              )),
                             ]),
                             SizedBox(
                               height: 3.h,
@@ -262,37 +282,22 @@ class LoginScreenConsumer extends StatelessWidget {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            decoration: TextDecoration.underline
-                                          ),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSecondaryContainer,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12.sp),
                                     ),
                                     CircleAvatar(
                                       radius: 1.5.h,
                                       backgroundColor: Colors.transparent,
-                                      backgroundImage:
-                                          const AssetImage(AssetConstants.google),
+                                      backgroundImage: const AssetImage(
+                                          AssetConstants.google),
                                     )
                                   ],
                                 ))
-                            // PrimaryButton(
-                            //   text: 'Sign in with Google',
-                            //   textColor: Theme.of(context).primaryColor,
-                            //   height: 6.h,
-                            //   onPressed: () {
-                            //     if (state.formKey.currentState!.validate()) {
-                            //       context
-                            //           .read<LoginBloc>()
-                            //           .add(const LoginEvent.signInWithGoogle());
-                            //     }
-                            //   },
-                            //   backgroundColor: Theme.of(context).colorScheme.background,
-                            //   fontSize: 12.sp,
-                            //   fontWeight: FontWeight.w500,
-                            //   elevation: 0,
-                            //   borderRadius: 8.w,
-                            //   borderColor: Theme.of(context).primaryColor,
-                            // ),
                           ],
                         ),
                       ),

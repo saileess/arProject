@@ -4,7 +4,6 @@ import 'package:major_project/presentation/core/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-
 import '../../domain/configs/app_config.dart';
 import '../../domain/configs/injection.dart';
 import '../../domain/constants/assets_constants.dart';
@@ -20,8 +19,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
-
 class HomeScreenConsumer extends StatelessWidget {
   const HomeScreenConsumer({Key? key}) : super(key: key);
 
@@ -29,7 +26,6 @@ class HomeScreenConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     final appStateNotifier =
         Provider.of<AppStateNotifier>(context, listen: false);
-
 
     return SafeArea(
       child: Scaffold(
@@ -43,7 +39,6 @@ class HomeScreenConsumer extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 7.h,
@@ -59,7 +54,9 @@ class HomeScreenConsumer extends StatelessWidget {
                     Text(
                       appStateNotifier.userDto!.username.toUpperCase(),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSecondaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                             fontWeight: FontWeight.w400,
                             fontSize: 14.sp,
                           ),
@@ -67,25 +64,30 @@ class HomeScreenConsumer extends StatelessWidget {
                     Text(
                       ' !',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSecondaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                             fontWeight: FontWeight.w500,
                             fontSize: 14.sp,
                           ),
                     ),
                   ],
                 ),
+                // SizedBox(
+                //   height: 2.h,
+                // ),
                 SizedBox(
                     height: 25.h,
                     width: 100.w,
-                    child: const Image(
-                      image: AssetImage(AssetConstants.home),
+                    child: SvgPicture.asset(
+                      AssetConstants.homeGuy,
                       fit: BoxFit.contain,
                     )),
                 SizedBox(
-                  height: 1.h,
+                  height: 2.h,
                 ),
                 Container(
-                  height: 10.h,
+                  height: 9.h,
                   width: 90.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(2.w)),
@@ -99,20 +101,25 @@ class HomeScreenConsumer extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          //color: Colors.red,
-                          width: 45.w,
-                          child: Text(
-                            'Click to checkout our upcoming models !!!!',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onTertiary,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12.sp),
+                        GestureDetector(
+                          onTap: () {
+                            navigator<NavigationService>().navigateTo(CoreRoutes.wallRoute);
+                          },
+                          child: SizedBox(
+                            //color: Colors.red,
+                            width: 45.w,
+                            child: Text(
+                              'Click to checkout our upcoming models !!!!',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12.sp),
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -132,7 +139,7 @@ class HomeScreenConsumer extends StatelessWidget {
                 ),
                 SizedBox(
                   //color: Colors.red,
-                  height: 18.h,
+                  height: 16.h,
                   child: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
@@ -140,7 +147,7 @@ class HomeScreenConsumer extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                            //height: 10.h,
+                            height: 14.h,
                             width: 35.w,
                             //color: Colors.yellow,
                             child: SvgPicture.asset(
@@ -166,7 +173,7 @@ class HomeScreenConsumer extends StatelessWidget {
                                               .colorScheme
                                               .tertiary,
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 12.sp),
+                                          fontSize: 9.sp),
                                 ),
                                 SizedBox(
                                   height: 1.h,
@@ -186,19 +193,16 @@ class HomeScreenConsumer extends StatelessWidget {
                                                   .colorScheme
                                                   .tertiary,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 10.sp),
+                                              fontSize: 8.sp),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
                                 ),
                                 Row(
                                   children: <Widget>[
                                     PrimaryButton(
                                       text: 'Dark',
                                       onPressed: () {},
-                                      height: 4.h,
+                                      height: 3.h,
                                       width: 10.w,
                                       backgroundColor: Theme.of(context)
                                           .colorScheme
@@ -218,7 +222,7 @@ class HomeScreenConsumer extends StatelessWidget {
                                     PrimaryButton(
                                       text: 'Light',
                                       onPressed: () {},
-                                      height: 4.h,
+                                      height: 3.h,
                                       width: 10.w,
                                       backgroundColor: Theme.of(context)
                                           .colorScheme
@@ -242,26 +246,30 @@ class HomeScreenConsumer extends StatelessWidget {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   height: 1.h,
-                // ),
-                Text(
-                                  'Caterory',
-                                  textAlign: TextAlign.left,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .tertiary,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 14.sp),
-                                ),
-                                SizedBox(height: 1.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+Text(
+                  'Explore Caterory:',
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14.sp),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
                 GestureDetector(
-                  onTap: () {navigator<NavigationService>().navigateTo(CoreRoutes.planetRoute);},
+                  onTap: () {
+                    navigator<NavigationService>()
+                        .navigateTo(CoreRoutes.planetRoute);
+                  },
                   child: Container(
+                    // height: 13.h,
                     width: 90.w,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -278,20 +286,21 @@ class HomeScreenConsumer extends StatelessWidget {
                                   topLeft: Radius.circular(3.w),
                                   topRight: Radius.circular(3.w),
                                 ),
+                                //color: Colors.white
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSecondaryContainer,
                               ),
                             ),
                             Positioned(
-                                top: 2.h,
-                                bottom: 1.h,
+                                top: 0.1.h,
+                                bottom: 0.1.h,
                                 left: 1.h,
                                 child: SizedBox(
-                                    height: 8.h,
-                                    width: 8.h,
-                                    child: SvgPicture.asset(
-                                        AssetConstants.geo)))
+                                    height: 9.h,
+                                    width: 9.h,
+                                    child:
+                                        SvgPicture.asset(AssetConstants.geo, fit: BoxFit.cover, )))
                           ],
                         ),
                         SizedBox(
@@ -338,6 +347,10 @@ class HomeScreenConsumer extends StatelessWidget {
                     ),
                   ),
                 )
+                  ],
+                )
+                
+                
               ],
             ),
           ),

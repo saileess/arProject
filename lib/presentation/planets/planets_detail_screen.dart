@@ -186,7 +186,7 @@ class PlanetDetailsContainer extends StatelessWidget {
                   onPressed: () {
                     navigator<NavigationService>()
                         .navigateTo(CoreRoutes.arRoute, queryParams: {
-                          'name': state.planetDto!.name,
+                          'name': state.planetDto!.fileName,
                         });
                   },
                   backgroundColor: Theme.of(context).colorScheme.primary,
