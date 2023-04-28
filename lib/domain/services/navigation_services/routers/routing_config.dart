@@ -11,6 +11,7 @@ import 'package:major_project/presentation/planets/planets_detail_screen.dart';
 import 'package:major_project/presentation/planets/planets_screen.dart';
 import 'package:major_project/presentation/wall/wall_detail_screen.dart';
 import '../../../../presentation/auth/login/login_screen.dart';
+import '../../../../presentation/auth/logout/logout_screen.dart';
 import '../../../../presentation/auth/register/signup_screen.dart';
 import '../../../../presentation/home/home_screen.dart';
 import '../../../../presentation/wall/wall_screen.dart';
@@ -27,6 +28,8 @@ Route<dynamic> authorizedNavigation(RouteSettings settings) {
       return _getPageRoute(const WallScreen(), settings);
       case CoreRoutes.planetRoute:
       return _getPageRoute(const PlanetScreen(), settings);
+      case CoreRoutes.logoutRoute:
+      return _getPageRoute(const LogOutPopup(), settings);
 
     case CoreRoutes.arRoute:
     final routeData = routingData.queryParameters;

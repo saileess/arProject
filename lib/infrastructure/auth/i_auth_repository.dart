@@ -149,23 +149,6 @@ return right(userDto);
 
 
 
-
-
-
-
-  Future<String> signOut()async{
-    try{
-      await FirebaseAuth.instance.signOut();
-      }
-      catch (e){
-        throw Exception(e);
-      }
-      return "user logged out";
-  }
-
-
-
-
   @override
   Future<bool> checkExistUsername({required String username}) async {
     try {
@@ -252,6 +235,18 @@ return right(userDto);
     } catch (err) {
       rethrow;
     }
+  }
+  
+  @override
+  Future<String> logOut() async{
+    try{
+      await FirebaseAuth.instance.signOut();
+      
+      }
+      catch (e){
+        throw Exception(e);
+      }
+      return 'user logged out';
   }
 
 

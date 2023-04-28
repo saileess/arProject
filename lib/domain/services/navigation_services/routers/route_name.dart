@@ -2,10 +2,13 @@ class AuthRoutes {
   static const String onBoardRoute = '';
   static const String loginRoute = 'login';
   static const String signUpRoute = 'signUp';
+  
+
 
 }
 
 class CoreRoutes {
+  static const String logoutRoute = 'logout';
   static const String homeRoute = 'home';
   static const String scienceDetailsRoute = 'scienceDetails';
   static const String geographyDetailsRoute = 'geographyDetails';

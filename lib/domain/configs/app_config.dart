@@ -18,6 +18,12 @@ class AppStateNotifier extends ChangeNotifier {
     this.userDto = userDto;
     notifyListeners();
   }
+  Future<void> updateAfterLogout({
+    required bool isAuthorized,
+  }) async {
+    this.isAuthorized = isAuthorized;
+    notifyListeners();
+  }
 
   Future<void> notifyState() async {
     notifyListeners();

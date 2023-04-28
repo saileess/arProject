@@ -22,6 +22,8 @@ abstract class AuthRepository {
 
   Future<Either<String, UserDto>> signInWithGoogle();
 
+  Future<String> logOut();
+
 
   Future<Either<String, bool>> resetPassword(
       {required String newPassword, required String oobCode});

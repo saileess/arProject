@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:major_project/presentation/auth/logout/logout_screen.dart';
 import 'package:major_project/presentation/core/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -37,40 +38,76 @@ class HomeScreenConsumer extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  height: 3.h,
+                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 7.h,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hello ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.tertiary,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.sp,
+                              ),
+                        ),
+                        Text(
+                          appStateNotifier.userDto!.username.toUpperCase(),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14.sp,
+                                  ),
+                        ),
+                        Text(
+                          ' !',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                  ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Hello ',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14.sp,
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+showDialog(
+        context: context,
+        builder: (context) {
+          return LogOutPopup();
+        });
+                          },
+                          child: Text(
+                            'Logout',
+                            style:
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12.sp,
+                                      decoration: TextDecoration.underline,
+                                      decorationStyle: TextDecorationStyle.double
+                                    ),
                           ),
-                    ),
-                    Text(
-                      appStateNotifier.userDto!.username.toUpperCase(),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14.sp,
-                          ),
-                    ),
-                    Text(
-                      ' !',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14.sp,
-                          ),
-                    ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 // SizedBox(
@@ -103,7 +140,8 @@ class HomeScreenConsumer extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            navigator<NavigationService>().navigateTo(CoreRoutes.wallRoute);
+                            navigator<NavigationService>()
+                                .navigateTo(CoreRoutes.wallRoute);
                           },
                           child: SizedBox(
                             //color: Colors.red,
@@ -117,7 +155,7 @@ class HomeScreenConsumer extends StatelessWidget {
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onTertiary,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 12.sp),
                             ),
                           ),
@@ -154,94 +192,20 @@ class HomeScreenConsumer extends StatelessWidget {
                               AssetConstants.settings,
                               fit: BoxFit.contain,
                             )),
-                        Column(
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Display Mode',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .tertiary,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 9.sp),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                SizedBox(
-                                  width: 50.w,
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 2.w),
-                                    child: Text(
-                                      'This setting is applied for the content across the app',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .tertiary,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 8.sp),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    PrimaryButton(
-                                      text: 'Dark',
-                                      onPressed: () {},
-                                      height: 3.h,
-                                      width: 10.w,
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiaryContainer,
-                                      borderColor: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiaryContainer,
-                                      textColor: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiary,
-                                      elevation: 0,
-                                      borderRadius: 1.w,
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    PrimaryButton(
-                                      text: 'Light',
-                                      onPressed: () {},
-                                      height: 3.h,
-                                      width: 10.w,
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiaryContainer,
-                                      borderColor: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiaryContainer,
-                                      textColor: Theme.of(context)
-                                          .colorScheme
-                                          .tertiary,
-                                      elevation: 0,
-                                      borderRadius: 1.w,
-                                    )
-                                  ],
-                                )
-                              ],
+                            SizedBox(
+                              width: 40.w,
+                              child: Text(
+'Learning that comes to life.',  style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .tertiary,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 14.sp),
+                              ),
                             ),
-                          ],
-                        )
                       ],
                     ),
                   ),
@@ -252,105 +216,106 @@ class HomeScreenConsumer extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-Text(
-                  'Explore Caterory:',
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 14.sp),
-                ),
-                SizedBox(
-                  height: 1.h,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    navigator<NavigationService>()
-                        .navigateTo(CoreRoutes.planetRoute);
-                  },
-                  child: Container(
-                    // height: 13.h,
-                    width: 90.w,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(3.5.w),
+                    Text(
+                      'Explore Caterory:',
+                      textAlign: TextAlign.left,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14.sp),
                     ),
-                    child: Column(
-                      children: [
-                        Stack(
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        navigator<NavigationService>()
+                            .navigateTo(CoreRoutes.planetRoute);
+                      },
+                      child: Container(
+                        // height: 13.h,
+                        width: 90.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(3.5.w),
+                        ),
+                        child: Column(
                           children: [
-                            Container(
-                              height: 10.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(3.w),
-                                  topRight: Radius.circular(3.w),
+                            Stack(
+                              children: [
+                                Container(
+                                  height: 10.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(3.w),
+                                      topRight: Radius.circular(3.w),
+                                    ),
+                                    //color: Colors.white
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                  ),
                                 ),
-                                //color: Colors.white
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondaryContainer,
+                                Positioned(
+                                    top: 0.1.h,
+                                    bottom: 0.1.h,
+                                    left: 1.h,
+                                    child: SizedBox(
+                                        height: 9.h,
+                                        width: 9.h,
+                                        child: SvgPicture.asset(
+                                          AssetConstants.geo,
+                                          fit: BoxFit.cover,
+                                        )))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Geography',
+                                    textAlign: TextAlign.left,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background),
+                                  ),
+                                  Text(
+                                    '>',
+                                    textAlign: TextAlign.left,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w700,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background),
+                                  ),
+                                ],
                               ),
                             ),
-                            Positioned(
-                                top: 0.1.h,
-                                bottom: 0.1.h,
-                                left: 1.h,
-                                child: SizedBox(
-                                    height: 9.h,
-                                    width: 9.h,
-                                    child:
-                                        SvgPicture.asset(AssetConstants.geo, fit: BoxFit.cover, )))
+                            SizedBox(
+                              height: 1.h,
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.w),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Geography',
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background),
-                              ),
-                              Text(
-                                '>',
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+                      ),
+                    )
                   ],
                 )
-                
-                
               ],
             ),
           ),

@@ -29,12 +29,14 @@ class AssetConstants {
 
 //auth svgs
   static const String login = '${vectorsFolder}login.svg';
+  static const String logout = '${vectorsFolder}logout.svg';
+
   static const String register = '${vectorsFolder}register.svg';
 
 //home page svgs
   static const String homeGuy = '${vectorsFolder}homeGuy.svg';
   static const String clickHereBro = '${vectorsFolder}ClickHereBro.svg';
-  static const String settings = '${vectorsFolder}trial.svg';
+  static const String settings = '${vectorsFolder}settings.svg';
   static const String geo = '${vectorsFolder}geo.svg';
 
 //bookmark svgs
