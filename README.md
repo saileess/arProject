@@ -1,7 +1,7 @@
 This application offers a platform of Augmented Reality to visualize geographical elements.
 
 
-# Worldtime Display 🕰️
+# ARena 🪐
 
 *A Flutter application using the new ARCore* 
 
