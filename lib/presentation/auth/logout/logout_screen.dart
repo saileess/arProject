@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:googleapis/adsense/v2.dart';
 import 'package:major_project/domain/services/navigation_services/routers/route_name.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';

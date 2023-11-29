@@ -9,6 +9,7 @@ import 'package:major_project/presentation/bookmark/bookmark_screen.dart';
 import 'package:major_project/presentation/home/bottomnavbar.dart';
 import 'package:major_project/presentation/planets/planets_detail_screen.dart';
 import 'package:major_project/presentation/planets/planets_screen.dart';
+import 'package:major_project/presentation/prac.dart';
 import 'package:major_project/presentation/wall/wall_detail_screen.dart';
 import '../../../../presentation/auth/login/login_screen.dart';
 import '../../../../presentation/auth/logout/logout_screen.dart';
@@ -59,6 +60,8 @@ Route<dynamic> authorizedNavigation(RouteSettings settings) {
 Route<dynamic> commonNavigation(RouteSettings settings) {
   final routingData = settings.name!.getRoutingData;
   switch (routingData.route) {
+    case AuthRoutes.prac:
+      return _getPageRoute(const Dropdown(), settings);
     case AuthRoutes.loginRoute:
       return _getPageRoute(const LoginScreen(), settings);
     case AuthRoutes.signUpRoute:

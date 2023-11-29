@@ -38,8 +38,8 @@ class MainApp extends StatelessWidget {
           ? authorizedNavigation
           : commonNavigation,
       initialRoute: Provider.of<AppStateNotifier>(context).isAuthorized
-          ? CoreRoutes.bottomnav
-          : AuthRoutes.loginRoute,
+          ? AuthRoutes.prac
+          : AuthRoutes.prac,
     );
   }
 }

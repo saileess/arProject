@@ -59,10 +59,15 @@ android {
     flavorDimensions "default"
     productFlavors {
         dev {
-            resValue "string", "app_name", "Major_Project-D"
+            resValue "string", "app_name", "ARena"
             applicationIdSuffix ".dev"
             dimension "default"
         }
+        // dev {
+        //     resValue "string", "app_name", "Major_Project-D"
+        //     applicationIdSuffix ".dev"
+        //     dimension "default"
+        // }
         staging {
             resValue "string", "app_name", "Major_Project-S"
             applicationIdSuffix ".staging"

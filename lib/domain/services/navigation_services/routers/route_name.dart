@@ -2,7 +2,7 @@ class AuthRoutes {
   static const String onBoardRoute = '';
   static const String loginRoute = 'login';
   static const String signUpRoute = 'signUp';
-  
+  static const String prac = 'prac';
 
 
 }
