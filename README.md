@@ -17,7 +17,7 @@ Although the current 3D models are statically included as a list for display, it
 
 Upcoming Models             |  Bookmark
 :-------------------------:|:----------------------:
-![Upcoming Topics](assets/images/upcoming_topics.jpg)  |  ![Bookmark](assets/images/bookmark.jpg)
+<img src="assets/images/upcoming_topics.jpg" width=500> |  <img src="assets/images/bookmark.jpg" width=500>
 
 Dashboard            |  Modules
 :-------------------------:|:-------------------------:
@@ -27,7 +27,7 @@ Module Detail            |  AR Model - 1
 :-------------------------:|:-------------------------:
 ![Detail](assets/images/saturn_detail.jpg)  |  ![Saturn](assets/images/saturn_ar.jpg)
 
-PAR Model - 2             |  AR Model - 3
+AR Model - 2             |  AR Model - 3
 :-------------------------:|:-------------------------:
 ![Eclipse](assets/images/eclipse_ar.jpg)  |  ![Terrain](assets/images/terrain_ar.jpg)
 
