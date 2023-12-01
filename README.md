@@ -11,7 +11,7 @@ This application offers a platform of Augmented Reality to visualize geographica
 
 ## 🔺 Scale
 
-Although the current 3D models are statically included as a list for display, it can further be done by integrating cloud storage combined with a database, similar to the rest of the app's functions, to make it entirely dynamic.
+Although the current 3D models are statically included as a list for display, it can further be done by integrating cloud storage combined with a database, similar to the rest of the app's functions to make it entirely dynamic.
 
 ## 📸 Screenshots
 
