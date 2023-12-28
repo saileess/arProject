@@ -1,5 +1,3 @@
-This application offers a platform of Augmented Reality to visualize geographical elements.
-
 
 # ARena 🪐
 
